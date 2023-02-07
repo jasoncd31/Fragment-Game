@@ -74,3 +74,6 @@ crashlytics-build.properties
 
 # Weird Mac DS_Store file
 .DS_Store
+
+# Visual Studio Thing
+.vsconfig
