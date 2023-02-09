@@ -39,9 +39,9 @@ public class LevelGenerator : MonoBehaviour
     {
         map = new int[width, height];
         
-        for(int x = 0; x < width; x++) 
+        for(int x = 1; x < width - 1; x++) 
         {
-            for(int y = 0; y < height; y++)
+            for(int y = 1; y < height - 1; y++)
             {
                 map[x, y] = (rand.Next(0, 100) < terrainCoveragePercentage) ? 1 : 0;
             }
