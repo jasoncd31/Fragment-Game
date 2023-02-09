@@ -72,7 +72,7 @@ public class LevelGenerator : MonoBehaviour
 
     int GetNeighborStates(int x, int y, int[,] map)
     {
-        return map[x-1, y-1] + map[x-1, y+1] + map[x+1, y-1] + map[x+1, y+1];
+        return map[x-1, y] + map[x, y+1] + map[x+1, y] + map[x, y-1];
     }
 
     void OnDrawGizmos()
