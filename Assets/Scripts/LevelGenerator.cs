@@ -1,3 +1,5 @@
+//TODO: document all this, Kieran
+//TODO: when writing your check to connect an island, make sure you check to see if the offset plus the position of the tile is outside the bounds of the map (I KNOW YOU'LL FORGET)
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +15,7 @@ public class LevelGenerator : MonoBehaviour
     private System.Random rand;
 
     public int terrainCoveragePercentage;
+    public int noiseLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +42,35 @@ public class LevelGenerator : MonoBehaviour
     {
         map = new int[width, height];
         
-        for(int x = 1; x < width - 1; x++) 
+        int startX = rand.Next(1, width-1);
+        int startY = rand.Next(1, height-1);
+        List<int[]> frontier = new List<int[]>();
+        frontier.Add(new int[] {startX, startY});
+
+        for (int i = 0; (decimal)i < ((decimal)width * (decimal)height) * ((decimal)terrainCoveragePercentage/100m); i++)
         {
-            for(int y = 1; y < height - 1; y++)
+            if(frontier.Count == 0)
             {
-                map[x, y] = (rand.Next(0, 100) < terrainCoveragePercentage) ? 1 : 0;
+                break;
+            }
+
+            int[] nextTile;
+            int chosenTile = rand.Next(0, frontier.Count);
+            nextTile = frontier[chosenTile];
+            frontier.RemoveAt(chosenTile);
+
+            map[nextTile[0], nextTile[1]] = 1;
+            foreach(int[] tile in GetNeighbors(nextTile[0], nextTile[1]))
+            {
+                if (tile[0] >= width || tile[1] >= height || tile[0] < 0 || tile[1] < 0)
+                {
+                    continue;
+                }
+
+                if (!frontier.Contains(tile) && map[tile[0], tile[1]] == 0 && rand.Next(0, 100) > noiseLevel)
+                {
+                    frontier.Add(tile);
+                }
             }
         }
     }
@@ -54,7 +81,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 1; y < height - 1; y++) 
             {
-                map[x, y] = (GetNeighborStates(x, y, map) > 2) ? 1 : map[x, y];
+                // map[x, y] = (GetNeighborStates(x, y, map) > 2) ? 1 : map[x, y];
             }
         }
     }
@@ -65,7 +92,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 1; y < height - 1; y++) 
             {
-                map[x, y] = (GetNeighborStates(x, y, map) == 0) ? 0 : map[x, y];
+                // map[x, y] = (GetNeighborStates(x, y, map) == 0) ? 0 : map[x, y];
             }
         }
     }
@@ -74,6 +101,19 @@ public class LevelGenerator : MonoBehaviour
     {
         return map[x-1, y] + map[x, y+1] + map[x+1, y] + map[x, y-1];
     }
+
+    List<int[]> GetNeighbors(int x, int y)
+    {
+        List<int[]> neighbors = new List<int[]>();
+        neighbors.Add(new int[] {x-1,y});
+        neighbors.Add(new int[] {x+1,y});
+        neighbors.Add(new int[] {x,y-1});
+        neighbors.Add(new int[] {x,y+1});
+
+        return neighbors;
+    }
+
+    
 
     void OnDrawGizmos()
     {
