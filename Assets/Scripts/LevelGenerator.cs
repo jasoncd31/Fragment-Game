@@ -1,5 +1,23 @@
-//TODO: document all this, Kieran
-//TODO: when writing your check to connect an island, make sure you check to see if the offset plus the position of the tile is outside the bounds of the map (I KNOW YOU'LL FORGET)
+/*
+ * Author: Kieran Ahn
+ * 
+ * This script contains all the logic which governs procedural level generation
+ * in Fragment, from terrain generation all the way to enemy placement. 
+ * 
+ * Currently a work in progress!
+ *
+ * STATUS:
+ * Terrain Generation: DONE
+ * Tile placement: IN PROGRESS
+ * 
+ */
+
+
+//TODO: to check if wall tile, just start from the edges and increment your way inwards until the next tile in line is a 1, not a 0. Should be O(w*h) time (linear scaling with width and height)
+//TODO: figure out a way to use tilesets
+//TODO: figure out how to create lists of enemies to pick from
+    //TODO ABOUT THAT TODO: balance enemy encounters (or maybe just have people do it themselves)
+//TODO: figure out more todos
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,12 +47,6 @@ public class LevelGenerator : MonoBehaviour
         rand = new System.Random(seed.GetHashCode());
 
         CreateTerrain();
-        
-        for (int i = 0; i < 2; i++)
-        {
-            SmoothTerrain();
-            RemoveDeadTiles();
-        }
         
     }
 
@@ -75,24 +87,14 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    //This is currently unnecessary imo, but I'll leave it in in case we want to do extra smoothing later. -Kieran
     void SmoothTerrain()
     {
         for (int x = 1; x < width - 1; x++)
         {
             for (int y = 1; y < height - 1; y++) 
             {
-                // map[x, y] = (GetNeighborStates(x, y, map) > 2) ? 1 : map[x, y];
-            }
-        }
-    }
-
-    void RemoveDeadTiles()
-    {
-        for (int x = 1; x < width - 1; x++)
-        {
-            for (int y = 1; y < height - 1; y++) 
-            {
-                // map[x, y] = (GetNeighborStates(x, y, map) == 0) ? 0 : map[x, y];
+                map[x, y] = (GetNeighborStates(x, y, map) > 2) ? 1 : map[x, y];
             }
         }
     }
@@ -113,8 +115,7 @@ public class LevelGenerator : MonoBehaviour
         return neighbors;
     }
 
-    
-
+    // Adapted from tutorial by pavcreations at https://pavcreations.com/procedural-generation-of-2d-maps-in-unity/3/
     void OnDrawGizmos()
     {
         if (map != null)
