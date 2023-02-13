@@ -8,7 +8,8 @@
  *
  * STATUS:
  * Terrain Generation: DONE
- * Tile placement: IN PROGRESS
+ * Tile placement: DONE
+ * Player spawn placement: IN PROGRESS
  * 
  */
 
@@ -36,6 +37,8 @@ public class LevelGenerator : MonoBehaviour
 
     public int terrainCoveragePercentage;
     public int noiseLevel;
+
+    public GameObject terrainTile;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +78,8 @@ public class LevelGenerator : MonoBehaviour
             frontier.RemoveAt(chosenTile);
 
             map[nextTile[0], nextTile[1]] = 1;
+            Instantiate(terrainTile, new Vector3(nextTile[0]*10, 0, nextTile[1]*10), Quaternion.identity);
+
             foreach(int[] tile in GetNeighbors(nextTile[0], nextTile[1]))
             {
                 if (tile[0] >= width || tile[1] >= height || tile[0] <= 0 || tile[1] <= 0)
