@@ -238,9 +238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 40
   height: 40
-  seed: amogus
-  terrainCoveragePercentage: 200
-  noiseLevel: 50
+  seed: 
+  terrainCoveragePercentage: 80
+  noiseLevel: 45
 --- !u!4 &1125572310
 Transform:
   m_ObjectHideFlags: 0
