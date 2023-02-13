@@ -19,7 +19,7 @@ public class DistanceAttack : MonoBehaviour
     public float throwUpwardForce;
 
     public float delay = 3f;
-    public GameObject explosionEffect;
+    public GameObject ExplosionEffect;
     float countdown;
     bool hasExploded = false;
     bool readyToThrow;
@@ -69,7 +69,7 @@ public class DistanceAttack : MonoBehaviour
 
     void Explode()
     {
-        Instantiate(explosionEffect, transform.position, transform.rotation);
+        Instantiate(ExplosionEffect, transform.position, transform.rotation);
 
         Destroy(gameObject);
     }
