@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Explotion2 : MonoBehaviour
 {
-    public float delay = 5f;
+    public float delay = 7f;
     public float radius = 5f;
-    public float force = 1700f;
+    public float force = 7000f;
 
     float countdown;
     bool hasExploded = false;
@@ -39,7 +39,14 @@ public class Explotion2 : MonoBehaviour
             {
                 rb.AddExplosionForce(force, transform.position, radius);
                 Debug.Log("Force!");
+                
             }
+            Destruction dest = nearbyObjetc.GetComponent<Destruction>();
+            if (dest != null)
+            {
+                dest.Destroy();
+            }
+
         }
 
         Destroy(gameObject);
