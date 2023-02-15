@@ -16,7 +16,7 @@ If you don't download LFS, you will only download pointer files.
 
 There are a few ways to do this. This step should be as simple as pulling a non-lfs repo. If this is your first time, here are some steps. I also will not be running through how to download git on terminal. 
 
-> As of 02-06-2023, I do not know how to set it up on HFP 300 computers. I will update this when I do know.
+> The process of pulling on HFP 300 computers is the same as any other computer. I use terminal but I believe the computers also have access to GitHub Desktop.
 
 - Navigate to the repo on your your browser. You should be here right now if this is the first time.
 
