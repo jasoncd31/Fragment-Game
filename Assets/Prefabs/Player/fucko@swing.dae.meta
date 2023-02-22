@@ -9,6 +9,26 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: ArmUpperTorsoMaterial
     second: {fileID: 2100000, guid: a417826e1bb034147a0ba0758b6d5913, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HeadMaterial_Base
+    second: {fileID: 2100000, guid: 9f851b6414700b2439d108207d7505f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LegMaterial1
+    second: {fileID: 2100000, guid: 5b9caceeaaa35924faec67d0bdac664c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MainClothingMaterial
+    second: {fileID: 2100000, guid: 98c9814f3db689a4eab3f2bd8fe43ffb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ScarfMaterial
+    second: {fileID: 2100000, guid: 93b44f5c137d78b4c9b0e14297e25186, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
