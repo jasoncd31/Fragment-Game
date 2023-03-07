@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: 0e4c2cb4db7ec2c45ab7aa0084313f86
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 8566123834030537635
+    second: Character_Sword_Swing_0003
   externalObjects: {}
   materials:
     materialImportMode: 2
