@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: polySurface3_polySurface2_group16_polySurface147_group17Mat
+      name: polySurface9_polySurface7_polySurface4_polySurface2_group16_polySurface147_group17Mat
     second: {fileID: 2100000, guid: bf0f63dfb4ece274aa595228450a6457, type: 2}
   materials:
     materialImportMode: 2
