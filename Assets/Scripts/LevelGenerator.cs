@@ -40,6 +40,14 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject terrainTile;
 
+    private List<int[]> walkable = new List<int[]>();
+
+    private int BORDER_SIZE = 1;
+    private int TILE_OFFSET = 10;
+    private int BASIC_TILE = 1;
+
+    private int[] playerSpawn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,12 +60,12 @@ public class LevelGenerator : MonoBehaviour
         rand = new System.Random(seed.GetHashCode());
 
         CreateTerrain();
-        
+        PlacePlayerSpawn();
     }
 
     void CreateTerrain() 
     {
-        map = new int[width + 1, height + 1];
+        map = new int[width + BORDER_SIZE, height + BORDER_SIZE];
         
         int startX = rand.Next(1, width);
         int startY = rand.Next(1, height);
@@ -77,8 +85,9 @@ public class LevelGenerator : MonoBehaviour
             nextTile = frontier[chosenTile];
             frontier.RemoveAt(chosenTile);
 
-            map[nextTile[0], nextTile[1]] = 1;
-            Instantiate(terrainTile, new Vector3(nextTile[0]*10, 0, nextTile[1]*10), Quaternion.identity);
+            map[nextTile[0], nextTile[1]] = BASIC_TILE;
+            Instantiate(terrainTile, new Vector3(nextTile[0]*TILE_OFFSET, 0, nextTile[1]*TILE_OFFSET), Quaternion.identity);
+            walkable.Add(nextTile);
 
             foreach(int[] tile in GetNeighbors(nextTile[0], nextTile[1]))
             {
@@ -95,6 +104,30 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    void PlacePlayerSpawn()
+    {
+        List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
+        bool spawnFound = false;
+        while(possibleSpawnPoints.Count > 0)
+        {
+            int spawnPoint = rand.Next(0, possibleSpawnPoints.Count);
+            int[] potentialPlayerSpawn = possibleSpawnPoints[spawnPoint];
+            List<int[]> potentialSpawnNeighbors = GetNeighbors(potentialPlayerSpawn[0], potentialPlayerSpawn[1]);
+            if(potentialSpawnNeighbors.TrueForAll(neighbor => map[neighbor[0], neighbor[1]] == BASIC_TILE))
+            {
+                playerSpawn = potentialPlayerSpawn;
+                spawnFound = true;
+                Debug.Log(String.Format("Player spawn set at ({0}, {1}).", playerSpawn[0], playerSpawn[1]));
+                break;
+            }
+            possibleSpawnPoints.RemoveAt(spawnPoint);
+        }
+        if(!spawnFound)
+        {
+            throw new NotSupportedException("No valid player spawn has been found, but Kieran hasn't implemented regenerating the terrain yet.");
+        }
+    }
+
     //This is currently unnecessary imo, but I'll leave it in in case we want to do extra smoothing later. -Kieran
     void SmoothTerrain()
     {
@@ -107,6 +140,8 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+
+    // --- HELPER FUNCTIONS ---
     int GetNeighborStates(int x, int y, int[,] map)
     {
         return map[x-1, y] + map[x, y+1] + map[x+1, y] + map[x, y-1];
