@@ -417,5 +417,17 @@ PrefabInstance:
       propertyPath: terrainTile
       value: 
       objectReference: {fileID: 1721217535801364812, guid: 455331a83400e914cb5e37a891e114df, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: enemyDensity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 7236460462038414719, guid: 9cbae2afb422b7d4eb4fef1b99586b63, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
