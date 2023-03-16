@@ -7,9 +7,10 @@
  * Currently a work in progress!
  *
  * STATUS:
- * Terrain Generation: DONE
+ * Terrain Generation: GOOD ENOUGH
  * Tile placement: DONE
- * Player spawn placement: IN PROGRESS
+ * Player spawn placement: GOOD ENOUGH
+ * Enemy placement: GOOD ENOUGH
  * 
  */
 
@@ -18,7 +19,7 @@
     //TODO ABOUT THAT TODO: terrible idea and doesn't work. Fix it.
 //TODO: figure out a way to use tilesets
 //TODO: figure out how to create lists of enemies to pick from
-    //TODO ABOUT THAT TODO: balance enemy encounters (or maybe just have people do it themselves
+    //TODO ABOUT THAT TODO: balance enemy encounters (or maybe just have people do it themselves)
 //TODO: figure out more todos
 using System.Collections;
 using System.Collections.Generic;
@@ -38,7 +39,10 @@ public class LevelGenerator : MonoBehaviour
     public int terrainCoveragePercentage;
     public int noiseLevel;
 
+    public int enemyDensity;
+
     public GameObject terrainTile;
+    public List<GameObject> enemies = new List<GameObject>();
 
     private List<int[]> walkable = new List<int[]>();
 
@@ -61,6 +65,7 @@ public class LevelGenerator : MonoBehaviour
 
         CreateTerrain();
         PlacePlayerSpawn();
+        PlaceEnemySpawns();
     }
 
     void CreateTerrain() 
@@ -125,6 +130,26 @@ public class LevelGenerator : MonoBehaviour
         if(!spawnFound)
         {
             throw new NotSupportedException("No valid player spawn has been found, but Kieran hasn't implemented regenerating the terrain yet.");
+        }
+    }
+
+    void PlaceEnemySpawns()
+    {
+        List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
+        foreach(int[] neighbor in GetNeighbors(playerSpawn[0], playerSpawn[1]))
+        {
+            possibleSpawnPoints.Remove(neighbor);
+            possibleSpawnPoints.RemoveAll(potentialSpawn => GetNeighbors(neighbor[0], neighbor[1]).Contains(potentialSpawn));
+        }
+
+        int possibleSpawnPointCount = possibleSpawnPoints.Count;
+        for(int i = 0; (decimal)i < (decimal)possibleSpawnPointCount * ((decimal)enemyDensity/100m); i++)
+        {
+            int[] nextSpawnPoint = possibleSpawnPoints[rand.Next(0, possibleSpawnPoints.Count)];
+            GameObject chosenEnemy = enemies[rand.Next(0, enemies.Count)];
+            Debug.Log(String.Format("Spawning {0} at ({1}, {2})", chosenEnemy, nextSpawnPoint[0], nextSpawnPoint[1]));
+            Instantiate(chosenEnemy, new Vector3(nextSpawnPoint[0]*TILE_OFFSET, 0.1, nextSpawnPoint[1]*TILE_OFFSET), Quaternion.identity);
+            possibleSpawnPoints.Remove(nextSpawnPoint);
         }
     }
 
