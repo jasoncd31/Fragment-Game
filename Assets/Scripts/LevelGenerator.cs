@@ -14,9 +14,6 @@
  * 
  */
 
-
-//TODO: to check if wall tile, just start from the edges and increment your way inwards until the next tile in line is a 1, not a 0. Should be O(w*h) time (linear scaling with width and height)
-    //TODO ABOUT THAT TODO: terrible idea and doesn't work. Fix it.
 //TODO: figure out a way to use tilesets
 //TODO: figure out how to create lists of enemies to pick from
     //TODO ABOUT THAT TODO: balance enemy encounters (or maybe just have people do it themselves)
@@ -148,7 +145,7 @@ public class LevelGenerator : MonoBehaviour
             int[] nextSpawnPoint = possibleSpawnPoints[rand.Next(0, possibleSpawnPoints.Count)];
             GameObject chosenEnemy = enemies[rand.Next(0, enemies.Count)];
             Debug.Log(String.Format("Spawning {0} at ({1}, {2})", chosenEnemy, nextSpawnPoint[0], nextSpawnPoint[1]));
-            Instantiate(chosenEnemy, new Vector3(nextSpawnPoint[0]*TILE_OFFSET, 0.1, nextSpawnPoint[1]*TILE_OFFSET), Quaternion.identity);
+            Instantiate(chosenEnemy, new Vector3(nextSpawnPoint[0]*TILE_OFFSET, (float)0.1, nextSpawnPoint[1]*TILE_OFFSET), Quaternion.identity);
             possibleSpawnPoints.Remove(nextSpawnPoint);
         }
     }
