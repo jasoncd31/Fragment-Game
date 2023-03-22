@@ -3,7 +3,77 @@ guid: 3a7f76cc8fc685a49a1ff7febc70a320
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v010_InnerLeaf1
+    second: {fileID: 2100000, guid: 445ef7a7b94e674408e0942ebe26237e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v010_OuterLeaf
+    second: {fileID: 2100000, guid: 19ff0afe797985c4d9c5c0e9531b95fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v011_InnerLeaf1
+    second: {fileID: 2100000, guid: 445ef7a7b94e674408e0942ebe26237e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v011_OuterLeaf
+    second: {fileID: 2100000, guid: 19ff0afe797985c4d9c5c0e9531b95fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v012_InnerLeaf1
+    second: {fileID: 2100000, guid: 445ef7a7b94e674408e0942ebe26237e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v012_OuterLeaf
+    second: {fileID: 2100000, guid: 19ff0afe797985c4d9c5c0e9531b95fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v013_InnerLeaf1
+    second: {fileID: 2100000, guid: 445ef7a7b94e674408e0942ebe26237e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v013_OuterLeaf
+    second: {fileID: 2100000, guid: 19ff0afe797985c4d9c5c0e9531b95fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v014_InnerLeaf1
+    second: {fileID: 2100000, guid: 445ef7a7b94e674408e0942ebe26237e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v014_OuterLeaf
+    second: {fileID: 2100000, guid: 19ff0afe797985c4d9c5c0e9531b95fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v015_InnerLeaf1
+    second: {fileID: 2100000, guid: 445ef7a7b94e674408e0942ebe26237e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_JustLeaf_v015_OuterLeaf
+    second: {fileID: 2100000, guid: 19ff0afe797985c4d9c5c0e9531b95fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartFlower_v020_FlowerCenterColor1
+    second: {fileID: 2100000, guid: 00ef23569811f3a4fb73ac22e29e1aed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DartTexture
+    second: {fileID: 2100000, guid: a0a95c70d766d2345ab18c47a58a9228, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -64,7 +134,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 1.75
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -85,7 +155,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
-    optimizeBones: 1
+    optimizeBones: 0
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -117,16 +187,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 1.75
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 89081792a94801e4eb02c7680c2e7cf9, type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 2
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
