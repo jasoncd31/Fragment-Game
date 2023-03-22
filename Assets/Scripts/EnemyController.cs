@@ -10,6 +10,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private int attackDamage = -1;
     public GameObject enemyDrop;
+
+    [SerializeField]
+    private GameObject bullet;
+    private float projVelocity = 20f;
+    private float lifespan = 3f;
     //private Random rng = new Random();
 
     private void Start()
@@ -17,6 +22,24 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("pewpew");
+            Attack();
+        }
+    }
+
+    private void Attack() 
+    {
+        GameObject dangerball = Instantiate(bullet, transform.position, Quaternion.identity);
+        Rigidbody dangerballRigid = dangerball.GetComponent<Rigidbody>();
+        dangerballRigid.velocity = transform.TransformDirection(Vector3.forward * projVelocity);
+        Destroy(dangerball, lifespan);
+    }
+
+    // Currently unused, unsure if enemies should deal "contact damage".
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player"))
@@ -27,6 +50,10 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /* 
+        Enemy should take damage according to power of source,
+        and if health is 0 or less, enemy should be killed to death.
+    */
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -38,6 +65,9 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    /*
+        The "killed to death part" of the above.
+    */
     private void StopExisting()
     {
         int numDrops = Random.Range(3, 6);
@@ -45,6 +75,10 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /*
+        Helper function to spawn drop objects, which will
+        spawn experience or other drops when hitting the ground.
+    */
     private void DropCollectibles(int numDrops)
     {
         for (int drop = 0; drop < numDrops; drop++)
