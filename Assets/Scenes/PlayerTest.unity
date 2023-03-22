@@ -568,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8594769873432438219, guid: 586e75093b48a4cb1bf28b594961402f, type: 3}
       propertyPath: playerObject
-      value: 
+      value: 0
       objectReference: {fileID: 363923194}
     - target: {fileID: 8594769873432438223, guid: 586e75093b48a4cb1bf28b594961402f, type: 3}
       propertyPath: m_Name
@@ -576,3 +576,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 586e75093b48a4cb1bf28b594961402f, type: 3}
+--- !u!4 &2026583171 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 067cfaa4665fbb248b6b69b8888501d4, type: 3}
+  m_PrefabInstance: {fileID: 615042739}
+  m_PrefabAsset: {fileID: 0}
