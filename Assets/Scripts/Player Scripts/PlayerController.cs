@@ -46,6 +46,16 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(DashCo());
             }
         }
+        // Only kinda works bc W is not forwards but up
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    playerAnimator.SetBool("Forwards", true);
+        //}
+        //else if(Input.GetKeyUp(KeyCode.W))
+        //{
+        //    playerAnimator.SetBool("Forwards", false);
+
+        //}
 
         if (transform.position.y < -30)
         {

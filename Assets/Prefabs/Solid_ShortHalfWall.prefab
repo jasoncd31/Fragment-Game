@@ -77,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 62626060995082e4bb832d2c56289039, type: 2}
     - target: {fileID: 919132149155446097, guid: 584b241cea1f0d346971025758e8e6ac, type: 3}
       propertyPath: m_Name
-      value: HalfWall_Short_v010
+      value: Solid_ShortHalfWall
       objectReference: {fileID: 0}
     - target: {fileID: 1170970068873931921, guid: 584b241cea1f0d346971025758e8e6ac, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -109,5 +109,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 13.686178, y: 5.1023116, z: 1.444418}
-  m_Center: {x: 9.682481, y: 2.0511553, z: 0.03713703}
+  m_Size: {x: 79.77202, y: 22.714483, z: 5.9244585}
+  m_Center: {x: 42.725403, y: 10.857242, z: 0.0405612}
