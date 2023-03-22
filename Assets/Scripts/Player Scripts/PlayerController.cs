@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     private PlayerStats pStats;
     private Animator playerAnimator;
+    private Vector3 move;
+    private Vector3 lookPos;
+
     [SerializeField]
     private Camera mainCam;
     private Vector3 playerVelocity;
@@ -33,12 +36,20 @@ public class PlayerController : MonoBehaviour
         Sprinting();
         RotatePlayer();
 
-
         if (!isDashing)
         {
             StopCoroutine(DashCo());
-            Vector3 move = new Vector3(Input.GetAxis("Horizontal"), gravity, Input.GetAxis("Vertical"));
+            move = new Vector3(Input.GetAxis("Horizontal"), gravity, Input.GetAxis("Vertical"));
             controller.Move(move * Time.deltaTime * playerSpeed);
+            if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
+            {
+                PlayMovingAnimation();
+            }
+            else
+            {
+                playerAnimator.SetBool("Forward", false);
+                playerAnimator.SetBool("Backward", false);
+            }
             if (Input.GetKeyDown(KeyCode.Space) && Time.time > canDash)
             {
                 dashTime = 0f;
@@ -46,17 +57,8 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(DashCo());
             }
         }
-        // Only kinda works bc W is not forwards but up
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    playerAnimator.SetBool("Forwards", true);
-        //}
-        //else if(Input.GetKeyUp(KeyCode.W))
-        //{
-        //    playerAnimator.SetBool("Forwards", false);
 
-        //}
-
+        //die if you fall off floor
         if (transform.position.y < -30)
         {
             pStats.deathReset();
@@ -101,12 +103,29 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000))
         {
-            Vector3 lookPos = hit.point - transform.position;
+            lookPos = hit.point - transform.position;
             lookPos.y = transform.position.y;
             Quaternion rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10f);
+            // ducttape tapes it to stay upright
             Vector3 ductTape = new Vector3(0, transform.rotation.eulerAngles.y, 0);
             transform.rotation = Quaternion.Euler(ductTape);
+        }
+    }
+
+    private void PlayMovingAnimation()
+    {
+        Vector3 pissOff = lookPos;
+        pissOff.Normalize();
+        Debug.Log("move: "+ move + "LookPos: " + pissOff);
+        Debug.Log("nut" + Vector3.Angle(move, pissOff));
+        if (Vector3.Angle(move, pissOff)< 90.0f)
+        {
+            playerAnimator.SetBool("Forward", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("Backward", true);
         }
     }
 }
