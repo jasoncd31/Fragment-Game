@@ -195,7 +195,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
-<<<<<<< Updated upstream
 --- !u!1 &334790761
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,8 +451,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyedVersion: {fileID: 0}
-=======
->>>>>>> Stashed changes
 --- !u!1001 &343125366
 PrefabInstance:
   m_ObjectHideFlags: 0
