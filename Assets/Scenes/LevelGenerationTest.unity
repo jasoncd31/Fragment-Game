@@ -123,90 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1004078612
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1004078615}
-  - component: {fileID: 1004078614}
-  - component: {fileID: 1004078613}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1004078613
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004078612}
-  m_Enabled: 1
---- !u!20 &1004078614
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004078612}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 220
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1004078615
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004078612}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 200, y: 400, z: 200}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2044574431
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +215,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &4699871648023838846
 PrefabInstance:
@@ -310,7 +226,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4699871646934294184, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4699871646934294184, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -357,16 +273,28 @@ PrefabInstance:
       value: Level Generator
       objectReference: {fileID: 0}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 9068485872174501936, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: terrainTile
       value: 
-      objectReference: {fileID: 1721217535801364812, guid: 455331a83400e914cb5e37a891e114df, type: 3}
+      objectReference: {fileID: 5630775224116287257, guid: 74caecfdf703861438fd1d049a1ea028, type: 3}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: enemyDensity
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 8594769873432438221, guid: 586e75093b48a4cb1bf28b594961402f, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 9068485872174501936, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: enemies.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: enemies.Array.data[0]
