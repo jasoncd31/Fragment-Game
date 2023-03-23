@@ -3,7 +3,22 @@ guid: 2ed2d15966c1f0049861aa0ad0547861
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PhrogSpikes1
+    second: {fileID: 2100000, guid: 49b94946b45ec274c857d0645470a55f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PufferPhrogHead
+    second: {fileID: 2100000, guid: 93e2523ef40538f458cf3b391e866fbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: dff295c0469fa9c4382cf1255a86c042, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
