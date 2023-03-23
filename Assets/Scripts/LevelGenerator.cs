@@ -132,9 +132,6 @@ public class LevelGenerator : MonoBehaviour
                 FollowObject followingCamera = worldCamera.GetComponent<FollowObject>();
                 followingCamera.playerObject = player.transform;
 
-                // This line should be removed once the camera's offset is fixed in the prefab.
-                followingCamera.offset = new Vector3(0, 530f, -380f);
-
                 playerController.mainCam = worldCamera;
                 
 
