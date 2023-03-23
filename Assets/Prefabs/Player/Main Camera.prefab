@@ -98,4 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 0}
-  offset: {x: 0, y: 53, z: -38}
+  offset: {x: 0, y: 530, z: -380}
