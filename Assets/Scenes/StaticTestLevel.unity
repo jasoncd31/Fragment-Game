@@ -281,6 +281,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9068485872174501936, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: bossRoom
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 2af8ec469bfc62142be6b2b78df8b72b, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: terrainTile
       value: 
       objectReference: {fileID: 5630775224116287257, guid: 74caecfdf703861438fd1d049a1ea028, type: 3}
