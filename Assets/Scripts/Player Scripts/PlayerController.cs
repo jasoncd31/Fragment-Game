@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookPos;
 
     [SerializeField]
-    private Camera mainCam;
+    public Camera mainCam;
     private Vector3 playerVelocity;
     private float playerSpeed = 15.0f;
     private float gravity = -2.0f;
