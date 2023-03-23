@@ -11,6 +11,8 @@
  * Tile placement: DONE
  * Player spawn placement: GOOD ENOUGH
  * Enemy placement: GOOD ENOUGH
+ * Boss room placement: GOOD ENOUGH
+ * Navmesh generation: IN-PROGRESS
  * 
  */
 
@@ -180,10 +182,6 @@ public class LevelGenerator : MonoBehaviour
         {
             int[] potentialSpawnPoint = possibleSpawnPoints[rand.Next(0, possibleSpawnPoints.Count)];
             Debug.Log(String.Format("Checking ({0}, {1})", potentialSpawnPoint[0], potentialSpawnPoint[1]));
-            foreach(int[] tile in GetTilesInRadius(potentialSpawnPoint[0], potentialSpawnPoint[1], BOSS_ROOM_RADIUS))
-            {
-                Debug.Log(String.Format("({0}, {1})", tile[0], tile[1]));
-            }
             List<int[]> tilesAroundBossRoom = GetTilesInRadius(potentialSpawnPoint[0], potentialSpawnPoint[1], BOSS_ROOM_RADIUS);
             if (tilesAroundBossRoom.TrueForAll(tile => map[tile[0], tile[1]] == BASIC_TILE))
             {
@@ -215,23 +213,15 @@ public class LevelGenerator : MonoBehaviour
             {
                 Debug.Log("Diagonals");
                 tilesInRadius.Add(new int[] { x+i, y+j });
-                Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
                 tilesInRadius.Add(new int[] { x+i, y-j });
-                Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
                 tilesInRadius.Add(new int[] { x-i, y+j });
-                Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
                 tilesInRadius.Add(new int[] { x-i, y-j });
-                Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
             }
             Debug.Log("straights");
             tilesInRadius.Add(new int[] { x + i, y });
-            Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
             tilesInRadius.Add(new int[] { x - i, y });
-            Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
             tilesInRadius.Add(new int[] { x, y + i });
-            Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
             tilesInRadius.Add(new int[] { x, y - i });
-            Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
         }
         return tilesInRadius;
     }
