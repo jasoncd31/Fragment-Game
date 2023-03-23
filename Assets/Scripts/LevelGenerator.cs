@@ -167,7 +167,7 @@ public class LevelGenerator : MonoBehaviour
             int[] nextSpawnPoint = possibleSpawnPoints[rand.Next(0, possibleSpawnPoints.Count)];
             GameObject chosenEnemy = enemies[rand.Next(0, enemies.Count)];
             Debug.Log(String.Format("Spawning {0} at ({1}, {2})", chosenEnemy, nextSpawnPoint[0], nextSpawnPoint[1]));
-            Instantiate(chosenEnemy, new Vector3(nextSpawnPoint[0]*TILE_OFFSET, (float)0.1, nextSpawnPoint[1]*TILE_OFFSET), Quaternion.identity);
+            Instantiate(chosenEnemy, new Vector3(nextSpawnPoint[0]*TILE_OFFSET, 0, nextSpawnPoint[1]*TILE_OFFSET), Quaternion.identity);
             possibleSpawnPoints.Remove(nextSpawnPoint);
         }
     }
