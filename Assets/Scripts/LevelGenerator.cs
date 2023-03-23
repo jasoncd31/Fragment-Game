@@ -127,14 +127,13 @@ public class LevelGenerator : MonoBehaviour
                 GameObject player = Instantiate(playerPrefab, new Vector3(playerSpawn[0] * TILE_OFFSET, 0, playerSpawn[1] * TILE_OFFSET), Quaternion.identity);
 
                 PlayerController playerController = player.GetComponent<PlayerController>();
-                Camera worldCamera = Instantiate(playerCamera, playerCamera.transform.position, playerCamera.transform.rotation);
+                Camera playerCamera = Instantiate(this.playerCamera, this.playerCamera.transform.position, this.playerCamera.transform.rotation);
 
-                FollowObject followingCamera = worldCamera.GetComponent<FollowObject>();
-                followingCamera.playerObject = player.transform;
+                FollowObject cameraTransform = playerCamera.GetComponent<FollowObject>();
+                cameraTransform.playerObject = player.transform;
 
-                playerController.mainCam = worldCamera;
+                playerController.mainCam = playerCamera;
                 
-
                 break;
             }
             possibleSpawnPoints.RemoveAt(spawnPoint);
