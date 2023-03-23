@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public Camera mainCam;
     private Vector3 playerVelocity;
-    private float playerSpeed = 15.0f;
+    private float playerSpeed = 150.0f;
     private float gravity = -2.0f;
 
     private bool isDashing = false; //is the player currently dashing
     float dashTime = 0f; // how long the increased playerSpeed/dashTime goes for
-    float dashSpeed = 40.0f; // how fast the player goes during the dash
+    float dashSpeed = 400.0f; // how fast the player goes during the dash
     float dashCooldown = 3f; //how long until the player can dash again
     float canDash = 0f; //Time.time + dashCooldown = canDash. Used in the comparison
 
@@ -90,11 +90,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetAxis("Sprint") > 0)
         {
-            playerSpeed = 20.0f;
+            playerSpeed = 200.0f;
         }
         else
         {
-            playerSpeed = 15.0f;
+            playerSpeed = 150.0f;
         }
     }
     private void RotatePlayer()
