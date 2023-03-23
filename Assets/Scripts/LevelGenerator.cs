@@ -132,6 +132,10 @@ public class LevelGenerator : MonoBehaviour
 
     void PlaceEnemySpawns()
     {
+        if(enemies.Count == 0)
+        {
+            throw new Exception("Cannot place enemies with empty enemies list!");
+        }
         List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
         foreach(int[] neighbor in GetNeighbors(playerSpawn[0], playerSpawn[1]))
         {
