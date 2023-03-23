@@ -53,6 +53,7 @@ public class LevelGenerator : MonoBehaviour
     private int BOSS_ROOM_RADIUS = 4;
 
     private int[] playerSpawn;
+    private int[] bossLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -183,10 +184,13 @@ public class LevelGenerator : MonoBehaviour
             {
                 Debug.Log(String.Format("({0}, {1})", tile[0], tile[1]));
             }
-            if (GetTilesInRadius(potentialSpawnPoint[0], potentialSpawnPoint[1], BOSS_ROOM_RADIUS).TrueForAll(tile => map[tile[0], tile[1]] == BASIC_TILE))
+            List<int[]> tilesAroundBossRoom = GetTilesInRadius(potentialSpawnPoint[0], potentialSpawnPoint[1], BOSS_ROOM_RADIUS);
+            if (tilesAroundBossRoom.TrueForAll(tile => map[tile[0], tile[1]] == BASIC_TILE))
             {
                 locationFound = true;
-                Instantiate(bossRoom, new Vector3(potentialSpawnPoint[0] * TILE_OFFSET, 30f, potentialSpawnPoint[1] * TILE_OFFSET), Quaternion.identity);
+                bossLocation = potentialSpawnPoint;
+                Instantiate(bossRoom, new Vector3(bossLocation[0] * TILE_OFFSET, 30f, bossLocation[1] * TILE_OFFSET), Quaternion.identity);
+                walkable.RemoveAll(tile => tilesAroundBossRoom.Contains(tile));
                 break;
             }
             possibleSpawnPoints.Remove(potentialSpawnPoint);
