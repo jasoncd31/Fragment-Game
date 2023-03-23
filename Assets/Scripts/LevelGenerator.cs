@@ -128,8 +128,15 @@ public class LevelGenerator : MonoBehaviour
 
                 PlayerController playerController = player.GetComponent<PlayerController>();
                 Camera worldCamera = Instantiate(playerCamera, playerCamera.transform.position, playerCamera.transform.rotation);
-                worldCamera.GetComponent<FollowObject>().playerObject = player.transform;
+
+                FollowObject followingCamera = worldCamera.GetComponent<FollowObject>();
+                followingCamera.playerObject = player.transform;
+
+                // This line should be removed once the camera's offset is fixed in the prefab.
+                followingCamera.offset = new Vector3(0, 530f, -380f);
+
                 playerController.mainCam = worldCamera;
+                
 
                 break;
             }
