@@ -22,7 +22,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using System.Collections.Specialized;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -41,6 +40,7 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject playerPrefab;
     public Camera playerCamera;
+    public GameObject bossRoom;
     public GameObject terrainTile;
     public List<GameObject> enemies = new List<GameObject>();
 
@@ -50,6 +50,7 @@ public class LevelGenerator : MonoBehaviour
     private int BORDER_SIZE = 1;
     private int TILE_OFFSET = 100;
     private int BASIC_TILE = 1;
+    private int BOSS_ROOM_RADIUS = 4;
 
     private int[] playerSpawn;
 
@@ -65,6 +66,7 @@ public class LevelGenerator : MonoBehaviour
         rand = new System.Random(seed.GetHashCode());
 
         CreateTerrain();
+        PlaceBossRoom();
         PlacePlayerSpawn();
         PlaceEnemySpawns();
     }
@@ -118,7 +120,7 @@ public class LevelGenerator : MonoBehaviour
         {
             int spawnPoint = rand.Next(0, possibleSpawnPoints.Count);
             int[] potentialPlayerSpawn = possibleSpawnPoints[spawnPoint];
-            List<int[]> potentialSpawnNeighbors = GetNeighbors(potentialPlayerSpawn[0], potentialPlayerSpawn[1]);
+            List<int[]> potentialSpawnNeighbors = GetTilesInRadius(potentialPlayerSpawn[0], potentialPlayerSpawn[1], 1);
             if(potentialSpawnNeighbors.TrueForAll(neighbor => map[neighbor[0], neighbor[1]] == BASIC_TILE))
             {
                 playerSpawn = potentialPlayerSpawn;
@@ -151,10 +153,9 @@ public class LevelGenerator : MonoBehaviour
             throw new Exception("Cannot place enemies with empty enemies list!");
         }
         List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
-        foreach(int[] neighbor in GetNeighbors(playerSpawn[0], playerSpawn[1]))
+        foreach(int[] neighbor in GetTilesInRadius(playerSpawn[0], playerSpawn[1], 1))
         {
             possibleSpawnPoints.Remove(neighbor);
-            possibleSpawnPoints.RemoveAll(potentialSpawn => GetNeighbors(neighbor[0], neighbor[1]).Contains(potentialSpawn));
         }
 
         int possibleSpawnPointCount = possibleSpawnPoints.Count;
@@ -168,25 +169,72 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    //This is currently unnecessary imo, but I'll leave it in in case we want to do extra smoothing later. -Kieran
-    void SmoothTerrain()
+    void PlaceBossRoom()
     {
-        for (int x = 1; x < width; x++)
+        List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
+        possibleSpawnPoints.RemoveAll(potentialSpawn => (Math.Abs(potentialSpawn[0] - width) < BOSS_ROOM_RADIUS) || (Math.Abs(potentialSpawn[1] - height) < BOSS_ROOM_RADIUS) || potentialSpawn[0] < BOSS_ROOM_RADIUS || potentialSpawn[1] < BOSS_ROOM_RADIUS);
+        
+        bool locationFound = false;
+        while(possibleSpawnPoints.Count > 0)
         {
-            for (int y = 1; y < height; y++) 
+            int[] potentialSpawnPoint = possibleSpawnPoints[rand.Next(0, possibleSpawnPoints.Count)];
+            Debug.Log(String.Format("Checking ({0}, {1})", potentialSpawnPoint[0], potentialSpawnPoint[1]));
+            foreach(int[] tile in GetTilesInRadius(potentialSpawnPoint[0], potentialSpawnPoint[1], BOSS_ROOM_RADIUS))
             {
-                map[x, y] = (GetNeighborStates(x, y, map) > 2) ? 1 : map[x, y];
+                Debug.Log(String.Format("({0}, {1})", tile[0], tile[1]));
             }
+            if (GetTilesInRadius(potentialSpawnPoint[0], potentialSpawnPoint[1], BOSS_ROOM_RADIUS).TrueForAll(tile => map[tile[0], tile[1]] == BASIC_TILE))
+            {
+                locationFound = true;
+                Instantiate(bossRoom, new Vector3(potentialSpawnPoint[0] * TILE_OFFSET, 30f, potentialSpawnPoint[1] * TILE_OFFSET), Quaternion.identity);
+                break;
+            }
+            possibleSpawnPoints.Remove(potentialSpawnPoint);
+        }
+        if(!locationFound)
+        {
+            throw new NotSupportedException("No valid location to spawn the boss room has been found, but Kieran hasn't implemented regenerating the terrain yet.");
         }
     }
 
-
     // --- HELPER FUNCTIONS ---
-    int GetNeighborStates(int x, int y, int[,] map)
+    /**
+     * Gets every tile within the radius centered on the coordinate. 
+     * Breaks the Pythagorean theorem.
+     */
+    List<int[]> GetTilesInRadius(int x, int y, int radius)
     {
-        return map[x-1, y] + map[x, y+1] + map[x+1, y] + map[x, y-1];
+        List<int[]> tilesInRadius = new List<int[]>();
+        for(int i = radius; i > 0; i--)
+        {
+            for(int j = i; j > 0; j--)
+            {
+                Debug.Log("Diagonals");
+                tilesInRadius.Add(new int[] { x+i, y+j });
+                Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
+                tilesInRadius.Add(new int[] { x+i, y-j });
+                Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
+                tilesInRadius.Add(new int[] { x-i, y+j });
+                Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
+                tilesInRadius.Add(new int[] { x-i, y-j });
+                Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
+            }
+            Debug.Log("straights");
+            tilesInRadius.Add(new int[] { x + i, y });
+            Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
+            tilesInRadius.Add(new int[] { x - i, y });
+            Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
+            tilesInRadius.Add(new int[] { x, y + i });
+            Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
+            tilesInRadius.Add(new int[] { x, y - i });
+            Debug.Log(String.Format("({0}, {1})", tilesInRadius[tilesInRadius.Count - 1][0], tilesInRadius[tilesInRadius.Count - 1][1]));
+        }
+        return tilesInRadius;
     }
 
+    /**
+     * Gets the four tiles to the north, south, east, and west of the coordinate
+     */
     List<int[]> GetNeighbors(int x, int y)
     {
         List<int[]> neighbors = new List<int[]>();
