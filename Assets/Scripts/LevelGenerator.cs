@@ -22,6 +22,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Collections.Specialized;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -38,13 +39,16 @@ public class LevelGenerator : MonoBehaviour
 
     public int enemyDensity;
 
+    public GameObject playerPrefab;
+    public Camera playerCamera;
     public GameObject terrainTile;
     public List<GameObject> enemies = new List<GameObject>();
+
 
     private List<int[]> walkable = new List<int[]>();
 
     private int BORDER_SIZE = 1;
-    private int TILE_OFFSET = 10;
+    private int TILE_OFFSET = 100;
     private int BASIC_TILE = 1;
 
     private int[] playerSpawn;
@@ -120,6 +124,13 @@ public class LevelGenerator : MonoBehaviour
                 playerSpawn = potentialPlayerSpawn;
                 spawnFound = true;
                 Debug.Log(String.Format("Player spawn set at ({0}, {1}).", playerSpawn[0], playerSpawn[1]));
+                GameObject player = Instantiate(playerPrefab, new Vector3(playerSpawn[0] * TILE_OFFSET, 0, playerSpawn[1] * TILE_OFFSET), Quaternion.identity);
+
+                PlayerController playerController = player.GetComponent<PlayerController>();
+                Camera worldCamera = Instantiate(playerCamera, playerCamera.transform.position, playerCamera.transform.rotation);
+                worldCamera.GetComponent<FollowObject>().playerObject = player.transform;
+                playerController.mainCam = worldCamera;
+
                 break;
             }
             possibleSpawnPoints.RemoveAt(spawnPoint);
