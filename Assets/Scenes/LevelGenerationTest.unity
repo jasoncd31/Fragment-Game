@@ -298,11 +298,19 @@ PrefabInstance:
       objectReference: {fileID: 9068485872174501936, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: enemies.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 7236460462038414719, guid: 9cbae2afb422b7d4eb4fef1b99586b63, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 2ed2d15966c1f0049861aa0ad0547861, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 3a7f76cc8fc685a49a1ff7febc70a320, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: enemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: aef3a3ce40be2514786127df39147b48, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
