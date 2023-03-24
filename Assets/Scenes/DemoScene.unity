@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -248,10 +248,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 71243920225467096, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 112986515}
+    - target: {fileID: 71243920225467096, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 71243920225467096, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1273585437168886833, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1273585437168886834, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: escapeMenuCanvas
+      value: 
+      objectReference: {fileID: 112986514}
     - target: {fileID: 1273585437168886835, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
       propertyPath: m_RootOrder
       value: 30
@@ -304,8 +320,52 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3244547615032755607, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398194945194654254, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 112986515}
+    - target: {fileID: 8398194945194654254, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398194945194654254, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476216859613383422, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1273585437168886834, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+    - target: {fileID: 8476216859613383422, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476216859613383422, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+--- !u!1 &112986514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3244547615032755607, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+  m_PrefabInstance: {fileID: 112986513}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &112986515 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1273585437168886834, guid: 958fe97a55fda6247891f04eaafeacd1, type: 3}
+  m_PrefabInstance: {fileID: 112986513}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9432b68d26ad74884b1d919b3e45c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &180021102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -382,6 +442,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7137997031694739601, guid: 9cbae2afb422b7d4eb4fef1b99586b63, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7236460462038414719, guid: 9cbae2afb422b7d4eb4fef1b99586b63, type: 3}
       propertyPath: m_Name
       value: JumpingSlime (2)
@@ -509,6 +573,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7137997031694739601, guid: 9cbae2afb422b7d4eb4fef1b99586b63, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 197347491, guid: 9cbae2afb422b7d4eb4fef1b99586b63, type: 3}
       propertyPath: m_Height
       value: 5.033617
@@ -1207,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4568286990950651202, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4568286990950651202, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
       propertyPath: m_LocalScale.x
