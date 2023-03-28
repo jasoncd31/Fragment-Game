@@ -12,7 +12,8 @@
  * Player spawn placement: GOOD ENOUGH
  * Enemy placement: GOOD ENOUGH
  * Boss room placement: GOOD ENOUGH
- * Navmesh generation: IN-PROGRESS
+ * Terrain regeneration: DONE
+ * Obstacle placement: IN PROGRESS
  * 
  */
 
@@ -60,18 +61,38 @@ public class LevelGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateLevel();
+        bool generationComplete = false;
+        int generationAttempts = 1;
+        while (!generationComplete)
+        {
+            Debug.Log(String.Format("Generating terrain: attempt {0}", generationAttempts));
+            generationComplete = GenerateLevel();
+        }
     }
 
-    void GenerateLevel()
+    bool GenerateLevel()
     {
         seed = string.IsNullOrEmpty(seed) ? DateTime.Now.ToString() : seed;
         rand = new System.Random(seed.GetHashCode());
 
+        Debug.Log(String.Format("Generating terrain with seed {0}", seed));
+
         CreateTerrain();
-        PlaceBossRoom();
-        PlacePlayerSpawn();
+
+        bool bossRoomPlaced = PlaceBossRoom();
+        if (!bossRoomPlaced)
+        {
+            return false;
+        }
+
+        bool playerSpawnPlaced = PlacePlayerSpawn();
+        if(!playerSpawnPlaced)
+        {
+            return false;
+        }
+
         PlaceEnemySpawns();
+        return true;
     }
 
     void CreateTerrain() 
@@ -115,7 +136,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    void PlacePlayerSpawn()
+    bool PlacePlayerSpawn()
     {
         List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
         bool spawnFound = false;
@@ -145,8 +166,9 @@ public class LevelGenerator : MonoBehaviour
         }
         if(!spawnFound)
         {
-            throw new NotSupportedException("No valid player spawn has been found, but Kieran hasn't implemented regenerating the terrain yet.");
+            return false;
         }
+        return true;
     }
 
     void PlaceEnemySpawns()
@@ -172,7 +194,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    void PlaceBossRoom()
+    bool PlaceBossRoom()
     {
         List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
         possibleSpawnPoints.RemoveAll(potentialSpawn => (Math.Abs(potentialSpawn[0] - width) < BOSS_ROOM_RADIUS) || (Math.Abs(potentialSpawn[1] - height) < BOSS_ROOM_RADIUS) || potentialSpawn[0] < BOSS_ROOM_RADIUS || potentialSpawn[1] < BOSS_ROOM_RADIUS);
@@ -195,8 +217,9 @@ public class LevelGenerator : MonoBehaviour
         }
         if(!locationFound)
         {
-            throw new NotSupportedException("No valid location to spawn the boss room has been found, but Kieran hasn't implemented regenerating the terrain yet.");
+            return false;
         }
+        return true;
     }
 
     // --- HELPER FUNCTIONS ---
@@ -211,13 +234,11 @@ public class LevelGenerator : MonoBehaviour
         {
             for(int j = i; j > 0; j--)
             {
-                Debug.Log("Diagonals");
                 tilesInRadius.Add(new int[] { x+i, y+j });
                 tilesInRadius.Add(new int[] { x+i, y-j });
                 tilesInRadius.Add(new int[] { x-i, y+j });
                 tilesInRadius.Add(new int[] { x-i, y-j });
             }
-            Debug.Log("straights");
             tilesInRadius.Add(new int[] { x + i, y });
             tilesInRadius.Add(new int[] { x - i, y });
             tilesInRadius.Add(new int[] { x, y + i });
