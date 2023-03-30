@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CDUI : MonoBehaviour
+public class CooldownUI : MonoBehaviour
 {
     [Header("Dash")]
     public Image abilityImage1;
