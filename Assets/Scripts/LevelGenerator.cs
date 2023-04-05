@@ -28,7 +28,8 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    int [,] map;
+    private int [,] map;
+    private (int, bool) [,] heightMap;
 
     public int width;
     public int height;
@@ -45,6 +46,7 @@ public class LevelGenerator : MonoBehaviour
     public Camera playerCamera;
     public GameObject bossRoom;
     public GameObject terrainTile;
+    public GameObject islandUndersideBlock;
     public List<GameObject> enemies = new List<GameObject>();
 
 
@@ -53,7 +55,7 @@ public class LevelGenerator : MonoBehaviour
     private int BORDER_SIZE = 1;
     private int TILE_OFFSET = 100;
     private int BASIC_TILE = 1;
-    private int BOSS_ROOM_RADIUS = 4;
+    private int BOSS_ROOM_RADIUS = 3;
 
     private int[] playerSpawn;
     private int[] bossLocation;
@@ -67,6 +69,11 @@ public class LevelGenerator : MonoBehaviour
         {
             Debug.Log(String.Format("Generating terrain: attempt {0}", generationAttempts));
             generationComplete = GenerateLevel();
+            generationAttempts++;
+            if(generationAttempts > 5)
+            {
+                throw new Exception("Something has gone horribly wrong.");
+            }
         }
     }
 
@@ -82,23 +89,26 @@ public class LevelGenerator : MonoBehaviour
         bool bossRoomPlaced = PlaceBossRoom();
         if (!bossRoomPlaced)
         {
+            Debug.Log("Boss room unable to be placed.");
             return false;
         }
 
         bool playerSpawnPlaced = PlacePlayerSpawn();
         if(!playerSpawnPlaced)
         {
+            Debug.Log("Player spawn unable to be placed.");
             return false;
         }
 
         PlaceEnemySpawns();
+        MakeCliffs();
         return true;
     }
 
-    void CreateTerrain() 
+    void CreateTerrain()
     {
-        map = new int[width + BORDER_SIZE, height + BORDER_SIZE];
-        
+        (map, heightMap) = (new int[width + BORDER_SIZE, height + BORDER_SIZE], new (int, bool)[width + BORDER_SIZE, height + BORDER_SIZE]);
+
         int startX = rand.Next(1, width);
         int startY = rand.Next(1, height);
         List<int[]> frontier = new List<int[]>();
@@ -118,17 +128,23 @@ public class LevelGenerator : MonoBehaviour
             frontier.RemoveAt(chosenTile);
 
             map[nextTile[0], nextTile[1]] = BASIC_TILE;
+            heightMap[nextTile[0], nextTile[1]] = (1, false);
             Instantiate(terrainTile, new Vector3(nextTile[0]*TILE_OFFSET, 0, nextTile[1]*TILE_OFFSET), Quaternion.identity);
             walkable.Add(nextTile);
 
-            foreach(int[] tile in GetNeighbors(nextTile[0], nextTile[1]))
+            List<int[]> neighbors = new List<int[]>(4);
+            neighbors.Add(new int[] { nextTile[0] + 1, nextTile[1] });
+            neighbors.Add(new int[] { nextTile[0] - 1, nextTile[1] });
+            neighbors.Add(new int[] { nextTile[0], nextTile[1] + 1 });
+            neighbors.Add(new int[] { nextTile[0], nextTile[1] - 1 });
+            foreach(int[] tile in neighbors)
             {
                 if (tile[0] >= width || tile[1] >= height || tile[0] <= 0 || tile[1] <= 0)
                 {
                     continue;
                 }
 
-                if (frontier.Count == 0 || (!frontier.Contains(tile) && map[tile[0], tile[1]] == 0 && rand.Next(0, 100) > noiseLevel))
+                if (frontier.Count == 0 || (!frontier.Exists(node => node[0] == tile[0] && node[1] == tile[1]) && map[tile[0], tile[1]] == 0 && rand.Next(0, 100) > noiseLevel))
                 {
                     frontier.Add(tile);
                 }
@@ -178,10 +194,10 @@ public class LevelGenerator : MonoBehaviour
             throw new Exception("Cannot place enemies with empty enemies list!");
         }
         List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
-        possibleSpawnPoints.Remove(playerSpawn);
+        possibleSpawnPoints.RemoveAll(tile => tile[0] == playerSpawn[0] && tile[1] == playerSpawn[1]);
         foreach(int[] neighbor in GetTilesInRadius(playerSpawn[0], playerSpawn[1], 1))
         {
-            possibleSpawnPoints.Remove(neighbor);
+            possibleSpawnPoints.RemoveAll(tile => tile[0] == neighbor[0] && tile[1] == neighbor[1]);
         }
 
         int possibleSpawnPointCount = possibleSpawnPoints.Count;
@@ -206,11 +222,12 @@ public class LevelGenerator : MonoBehaviour
             int[] potentialSpawnPoint = possibleSpawnPoints[rand.Next(0, possibleSpawnPoints.Count)];
             Debug.Log(String.Format("Checking ({0}, {1})", potentialSpawnPoint[0], potentialSpawnPoint[1]));
             List<int[]> tilesAroundBossRoom = GetTilesInRadius(potentialSpawnPoint[0], potentialSpawnPoint[1], BOSS_ROOM_RADIUS);
-            if (tilesAroundBossRoom.TrueForAll(tile => map[tile[0], tile[1]] == BASIC_TILE))
+            if (tilesAroundBossRoom.Count == (Math.Pow(BOSS_ROOM_RADIUS, 2) + BOSS_ROOM_RADIUS) * 4)
             {
                 locationFound = true;
                 bossLocation = potentialSpawnPoint;
                 Instantiate(bossRoom, new Vector3(bossLocation[0] * TILE_OFFSET, 30f, bossLocation[1] * TILE_OFFSET), Quaternion.identity);
+                walkable.Remove(potentialSpawnPoint);
                 walkable.RemoveAll(tile => tilesAroundBossRoom.Contains(tile));
                 break;
             }
@@ -223,6 +240,51 @@ public class LevelGenerator : MonoBehaviour
         return true;
     }
 
+    void MakeCliffs()
+    {
+        int startX = rand.Next(1, width);
+        int startY = rand.Next(1, height);
+
+        while(!walkable.Exists(tile => tile[0] == startX & tile[1] == startY)) 
+        {
+            startX = rand.Next(1, width);
+            startY = rand.Next(1, height);
+        }
+
+        UpdateHeightMap(startX, startY);
+
+    }
+
+    void UpdateHeightMap(int x, int y)
+    {
+        int east = map[x + 1, y] == 0 ? -1 : map[x + 1, y];
+        int west = map[x - 1, y] == 0 ? -1 : map[x - 1, y];
+        int north = map[x, y + 1] == 0 ? -1 : map[x, y + 1];
+        int south = map[x, y - 1] == 0 ? -1 : map[x, y - 1];
+
+        heightMap[x, y] = (Math.Min(Math.Max(east + west + north + south, 1), 20), true);
+
+        GameObject cliff = Instantiate(islandUndersideBlock, new Vector3(x * TILE_OFFSET, -(heightMap[x, y].Item1 * TILE_OFFSET / 2) - 0.01f, y * TILE_OFFSET), Quaternion.identity);
+        cliff.transform.localScale = new Vector3(TILE_OFFSET/10, heightMap[x, y].Item1 * TILE_OFFSET/10, TILE_OFFSET/10);
+
+        if (map[x + 1, y] != 0 && !heightMap[x + 1, y].Item2)
+        {
+            UpdateHeightMap(x + 1, y);
+        }
+        if (map[x - 1, y] != 0 && !heightMap[x - 1, y].Item2)
+        {
+            UpdateHeightMap(x - 1, y);
+        }
+        if (map[x, y + 1] != 0 && !heightMap[x, y + 1].Item2)
+        {
+            UpdateHeightMap(x, y + 1);
+        }
+        if (map[x, y-1] != 0 && !heightMap[x, y - 1].Item2)
+        {
+            UpdateHeightMap(x, y-1);
+        }
+    }
+
     // --- HELPER FUNCTIONS ---
     /**
      * Gets every tile within the radius centered on the coordinate. 
@@ -233,17 +295,28 @@ public class LevelGenerator : MonoBehaviour
         List<int[]> tilesInRadius = new List<int[]>();
         for(int i = radius; i > 0; i--)
         {
-            for(int j = i; j > 0; j--)
+            for(int j = radius; j > 0; j--)
             {
-                tilesInRadius.Add(new int[] { x+i, y+j });
-                tilesInRadius.Add(new int[] { x+i, y-j });
-                tilesInRadius.Add(new int[] { x-i, y+j });
-                tilesInRadius.Add(new int[] { x-i, y-j });
+                (int,int)[] diagonals = { (x + i, y + j), (x + i, y - j), (x - i, y + j), (x - i, y - j) };
+                foreach (var direction in diagonals)
+                {
+                    var tile = walkable.Find(position => position[0] == direction.Item1 && position[1] == direction.Item2);
+                    if (tile != null)
+                    {
+                        tilesInRadius.Add(tile);
+                    }
+                }
+
             }
-            tilesInRadius.Add(new int[] { x + i, y });
-            tilesInRadius.Add(new int[] { x - i, y });
-            tilesInRadius.Add(new int[] { x, y + i });
-            tilesInRadius.Add(new int[] { x, y - i });
+            (int,int)[] cardinals = { (x + i, y), (x - i, y), (x, y + i), (x, y - i) };
+            foreach (var direction in cardinals)
+            {
+                var tile = walkable.Find(position => position[0] == direction.Item1 && position[1] == direction.Item2);
+                if (tile != null)
+                {
+                    tilesInRadius.Add(tile);
+                }
+            }
         }
         return tilesInRadius;
     }
@@ -254,10 +327,16 @@ public class LevelGenerator : MonoBehaviour
     List<int[]> GetNeighbors(int x, int y)
     {
         List<int[]> neighbors = new List<int[]>();
-        neighbors.Add(new int[] {x-1,y});
-        neighbors.Add(new int[] {x+1,y});
-        neighbors.Add(new int[] {x,y-1});
-        neighbors.Add(new int[] {x,y+1});
+        (int,int)[] directions = { (x + 1, y), (x - 1, y), (x, y - 1), (x, y + 1) };
+        foreach (var direction in directions)
+        {
+            var tile = walkable.Find(position => position[0] == direction.Item1 && position[1] == direction.Item2);
+            if(tile != null)
+            {
+                neighbors.Add(tile);
+            }
+                
+        }
 
         return neighbors;
     }

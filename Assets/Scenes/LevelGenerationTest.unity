@@ -281,6 +281,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 919132149155446097, guid: 2af8ec469bfc62142be6b2b78df8b72b, type: 3}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: noiseLevel
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: terrainTile
       value: 
       objectReference: {fileID: 5630775224116287257, guid: 74caecfdf703861438fd1d049a1ea028, type: 3}
@@ -301,6 +305,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: islandUndersideBlock
+      value: 
+      objectReference: {fileID: 1292941967381567391, guid: 05e2e04a061089c4ea89499d92f70b08, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
       objectReference: {fileID: 919132149155446097, guid: 2ed2d15966c1f0049861aa0ad0547861, type: 3}
@@ -312,5 +320,9 @@ PrefabInstance:
       propertyPath: enemies.Array.data[2]
       value: 
       objectReference: {fileID: 919132149155446097, guid: aef3a3ce40be2514786127df39147b48, type: 3}
+    - target: {fileID: 4699871646934294187, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
+      propertyPath: terrainCoveragePercentage
+      value: 69
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e16cd4fc72069446879c75330f0899b, type: 3}
