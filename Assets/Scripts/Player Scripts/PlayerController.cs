@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
         Vector2 move2D = new(move.x, move.z);
         
         //Debug.Log("move: "+ move2D + "LookPos: " + lookPos2D);
-        Debug.Log("nut" + Vector2.Angle(move2D, lookPos2D));
+        //Debug.Log("Rotate Angle: " + Vector2.Angle(move2D, lookPos2D));
         if (Vector2.Angle(move2D, lookPos2D) < 90.0f)
         {
             playerAnimator.SetBool("Forward", true);
