@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             controller.Move(moveDash * Time.deltaTime * dashSpeed);
             dashTime += Time.deltaTime;
+            playerAnimator.SetTrigger("Dash");
             yield return null;
         }
         isDashing = false;
