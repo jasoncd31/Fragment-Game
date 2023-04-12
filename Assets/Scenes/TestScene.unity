@@ -1363,4 +1363,4 @@ MonoBehaviour:
   throwForce: 7
   throwUpwardForce: 10
   delay: 3
-  explosionEffect: {fileID: 0}
+  ExplosionEffect: {fileID: 0}
