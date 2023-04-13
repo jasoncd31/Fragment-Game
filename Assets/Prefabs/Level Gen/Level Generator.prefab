@@ -52,7 +52,7 @@ MonoBehaviour:
   enemyDensity: 10
   playerPrefab: {fileID: 9068485872174501936, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
   playerCamera: {fileID: 8594769873432438221, guid: 586e75093b48a4cb1bf28b594961402f, type: 3}
-  bossRoom: {fileID: 0}
+  bossRoom: {fileID: 919132149155446097, guid: 2af8ec469bfc62142be6b2b78df8b72b, type: 3}
   terrainTile: {fileID: 5630775224116287257, guid: 74caecfdf703861438fd1d049a1ea028, type: 3}
   islandUndersideBlock: {fileID: 1292941967381567391, guid: 05e2e04a061089c4ea89499d92f70b08, type: 3}
   enemies: []
