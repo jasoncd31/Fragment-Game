@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = gameObject.GetComponent<CharacterController>();
         pStats = controller.gameObject.GetComponent<PlayerStats>();
-        playerAnimator = gameObject.GetComponent<Animator>();
+        //playerAnimator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,15 +41,15 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(DashCo());
             move = new Vector3(Input.GetAxis("Horizontal"), gravity, Input.GetAxis("Vertical"));
             controller.Move(move * Time.deltaTime * playerSpeed);
-            if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
-            {
-                PlayMovingAnimation();
-            }
-            else
-            {
-                playerAnimator.SetBool("Forward", false);
-                playerAnimator.SetBool("Backward", false);
-            }
+            // if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
+            // {
+            //     //PlayMovingAnimation();
+            // }
+            // else
+            // {
+            //     playerAnimator.SetBool("Forward", false);
+            //     playerAnimator.SetBool("Backward", false);
+            // }
             if (Input.GetKeyDown(KeyCode.Space) && Time.time > canDash)
             {
                 dashTime = 0f;
@@ -113,19 +113,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void PlayMovingAnimation()
-    {
-        Vector3 pissOff = lookPos;
-        pissOff.Normalize();
-        Debug.Log("move: "+ move + "LookPos: " + pissOff);
-        Debug.Log("nut" + Vector3.Angle(move, pissOff));
-        if (Vector3.Angle(move, pissOff)< 90.0f)
-        {
-            playerAnimator.SetBool("Forward", true);
-        }
-        else
-        {
-            playerAnimator.SetBool("Backward", true);
-        }
-    }
+    // private void PlayMovingAnimation()
+    // {
+    //     Vector3 pissOff = lookPos;
+    //     pissOff.Normalize();
+    //     Debug.Log("move: "+ move + "LookPos: " + pissOff);
+    //     Debug.Log("nut" + Vector3.Angle(move, pissOff));
+    //     if (Vector3.Angle(move, pissOff)< 90.0f)
+    //     {
+    //         playerAnimator.SetBool("Forward", true);
+    //     }
+    //     else
+    //     {
+    //         playerAnimator.SetBool("Backward", true);
+    //     }
+    // }
 }

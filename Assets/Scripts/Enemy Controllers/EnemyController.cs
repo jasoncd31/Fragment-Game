@@ -1,29 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private int health = 3;
+    public int health = 3;
     [SerializeField]
-    private int attackDamage = -1;
+    public int attackDamage = -1;
     public GameObject enemyDrop;
 
     [SerializeField]
-    private GameObject bullet;
-    private float projVelocity = 20f;
-    private float lifespan = 3f;
+    public GameObject bullet;
+    public float projVelocity = 20f;
+    public float lifespan = 3f;
+    public Vector3 anchor;
     //private Random rng = new Random();
+
+    public Transform goal;
+
+    public NavMeshAgent agent;
+    public enum State
+    {
+        Idle,
+        Alerted,
+        Striking,
+        Returning,
+        Dead
+    }
+    public State state;
 
     private void Start()
     {
-
+        agent = GetComponent<NavMeshAgent>();
+        agent.destination = goal.position;
+        state = State.Idle;
+        anchor = transform.position;
     }
 
     private void Update()
     {
+        agent.destination = goal.position;
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("pewpew");
@@ -60,7 +79,7 @@ public class EnemyController : MonoBehaviour
 
         if (health <= 0)
         {
-            StopExisting();
+            state = State.Dead;
         }
 
     }
@@ -68,7 +87,7 @@ public class EnemyController : MonoBehaviour
     /*
         The "killed to death part" of the above.
     */
-    private void StopExisting()
+    public void StopExisting()
     {
         int numDrops = Random.Range(3, 6);
         DropCollectibles(numDrops);
