@@ -33,9 +33,9 @@ public class PlayerController : MonoBehaviour
     {
         controller = gameObject.GetComponent<CharacterController>();
         pStats = controller.gameObject.GetComponent<PlayerStats>();
-        // playerAnimator = gameObject.GetComponent<Animator>();
-        // basePlayerSpeed = playerSpeed;
-        // dashSpeed = basePlayerSpeed * dashPlayerSpeedMultiplier;
+        playerAnimator = gameObject.GetComponent<Animator>();
+        basePlayerSpeed = playerSpeed;
+        dashSpeed = basePlayerSpeed * dashPlayerSpeedMultiplier;
     }
 
     // Update is called once per frame
@@ -49,15 +49,17 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(DashCo());
             move = new Vector3(Input.GetAxis("Horizontal"), gravity, Input.GetAxis("Vertical"));
             controller.Move(move * Time.deltaTime * playerSpeed);
-            // if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
-            // {
-            //     //PlayMovingAnimation();
-            // }
-            // else
-            // {
-            //     playerAnimator.SetBool("Forward", false);
-            //     playerAnimator.SetBool("Backward", false);
-            // }
+            // Debug.Log(move * Time.deltaTime * playerSpeed);
+            // Debug.Log(playerSpeed);
+            if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
+            {
+                PlayMovingAnimation();
+            }
+            else
+            {
+                playerAnimator.SetBool("Forward", false);
+                playerAnimator.SetBool("Backward", false);
+            }
             if (Input.GetKeyDown(KeyCode.Space) && Time.time > canDash)
             {
                 dashTime = 0f;
@@ -81,7 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             controller.Move(moveDash * Time.deltaTime * dashSpeed);
             dashTime += Time.deltaTime;
-            playerAnimator.SetTrigger("Dash");
+            // playerAnimator.SetTrigger("Dash");
             yield return null;
         }
         isDashing = false;
@@ -116,22 +118,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // private void PlayMovingAnimation()
-    // {
-    //     Vector2 lookPos2D = new(lookPos.x,lookPos.z);
-    //     Vector2 move2D = new(move.x, move.z);
+    private void PlayMovingAnimation()
+    {
+        Vector2 lookPos2D = new(lookPos.x,lookPos.z);
+        Vector2 move2D = new(move.x, move.z);
         
-    //     //Debug.Log("move: "+ move2D + "LookPos: " + lookPos2D);
-    //     //Debug.Log("Rotate Angle: " + Vector2.Angle(move2D, lookPos2D));
-    //     if (Vector2.Angle(move2D, lookPos2D) < 90.0f)
-    //     {
-    //         playerAnimator.SetBool("Forward", true);
-    //         playerAnimator.SetBool("Backward", false);
-    //     }
-    //     if (Vector2.Angle(move2D, lookPos2D) > 90.0f)
-    //     {
-    //         playerAnimator.SetBool("Forward", false);
-    //         playerAnimator.SetBool("Backward", true);
-    //     }
-    // }
+        //Debug.Log("move: "+ move2D + "LookPos: " + lookPos2D);
+        //Debug.Log("Rotate Angle: " + Vector2.Angle(move2D, lookPos2D));
+        if (Vector2.Angle(move2D, lookPos2D) < 90.0f)
+        {
+            playerAnimator.SetBool("Forward", true);
+            playerAnimator.SetBool("Backward", false);
+        }
+        if (Vector2.Angle(move2D, lookPos2D) > 90.0f)
+        {
+            playerAnimator.SetBool("Forward", false);
+            playerAnimator.SetBool("Backward", true);
+        }
+    }
 }

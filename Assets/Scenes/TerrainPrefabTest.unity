@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130,9 +130,69 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 20748718415270266, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 791848558543547018, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121354364790198660, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361126371681655767, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602704219623038088, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984452273869720357, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573869761522934519, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4640306204048536098, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056438183265274643, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5283729693329644232, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592168520417912392, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919841451370424683, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163468881617312434, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6286132419854725481, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
       propertyPath: m_Name
       value: Solid_HalfWall_v010
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286132419854725481, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6552197607778315700, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6662799181418179539, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
       propertyPath: m_RootOrder
@@ -177,6 +237,10 @@ PrefabInstance:
     - target: {fileID: 6662799181418179539, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182705807537845183, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
@@ -527,7 +591,7 @@ MonoBehaviour:
   isAttacking: 0
 --- !u!95 &1198474631
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -544,7 +608,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1392017466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -615,6 +679,10 @@ PrefabInstance:
     - target: {fileID: 6502081929580419948, guid: baaef08f6792db14a9225e20383ecae5, type: 3}
       propertyPath: m_Name
       value: Archway_Broken
+      objectReference: {fileID: 0}
+    - target: {fileID: 6502081929580419948, guid: baaef08f6792db14a9225e20383ecae5, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baaef08f6792db14a9225e20383ecae5, type: 3}
@@ -776,9 +844,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2052887277488753966, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683802198276109698, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044785693958055001, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353365301436012761, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3759943275320348664, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
       propertyPath: m_Name
       value: Solid_ShortHalfWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3759943275320348664, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934982891237155875, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4178427171554792229, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4568286990950651202, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
       propertyPath: m_RootOrder
@@ -823,6 +919,18 @@ PrefabInstance:
     - target: {fileID: 4568286990950651202, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366095969228944820, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659541874659744870, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826426601065688853, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb68165f4e43624fbb19c016a6e5698, type: 3}
