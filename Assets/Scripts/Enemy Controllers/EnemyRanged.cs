@@ -20,7 +20,7 @@ public class EnemyRanged : MonoBehaviour
             }
         }
 
-        else if (other.tag == "Impenetrable")
+        else if (other.tag == "Impenetrable" || other.tag == "Ground")
         {
             Debug.Log("Vandalism is not cool");
             Destroy(gameObject);

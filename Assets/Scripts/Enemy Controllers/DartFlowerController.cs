@@ -8,7 +8,8 @@ public class DartFlowerController : EnemyController
     public GameObject player;
     private Animator flowerAnimator;
     private bool dead = false;
-    public float aggroDistance = 20f;
+    public float aggroDistance = 200f;
+    private float dropSpeed;
     Vector3 toPlayer;
 
     public DartFlowerController()
@@ -26,12 +27,14 @@ public class DartFlowerController : EnemyController
     {
         agent = GetComponent<NavMeshAgent>();
         flowerAnimator = GetComponent<Animator>();
+        dropSpeed = 5f;
     }
 
     // Update is called once per frame
     private void Update()
     {
         toPlayer = player.transform.position - transform.position;
+        // Debug.Log(player.transform.position);
         switch(state)
         {
             case State.Idle:
@@ -55,6 +58,13 @@ public class DartFlowerController : EnemyController
             }
                 break;
         }
+        Rigidbody bulletRigid = bullet.GetComponent<Rigidbody>();
+        bulletRigid.AddForce(new Vector3(0, -2000, 0), ForceMode.Impulse);
+    }
+
+    private void DartDrop()
+    {
+        Instantiate(bullet, new Vector3(player.transform.position.x, player.transform.position.y + 200, player.transform.position.z), new Quaternion(0, 0, -180, 1));
     }
 
     private void toIdle()
