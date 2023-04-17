@@ -12,13 +12,15 @@ public class GolemBossController : EnemyController
     [SerializeField]
     private float aggroDistance;
     private bool dead = false;
+    private bool aggroed = false;
     private bool charging = false;
     private bool slamming = false;
+    private bool stunned = false;
 
     public GolemBossController()
     {
         health = 30;
-        attackDamage = -3;
+        attackDamage = 0;
         enemyDrop = null;
         bullet = null;
         projVelocity = 0f;
@@ -42,24 +44,47 @@ public class GolemBossController : EnemyController
             case State.Idle:
                 if (toPlayer.magnitude < aggroDistance)
                 {
-                    state = State.Charging;
+                    state = State.Alerted;
+                }
+                break;
+            case State.Alerted:
+                if (!aggroed)
+                {
+                    bossAnimator.SetTrigger("Alert");
                 }
                 break;
             case State.Charging:
+                stunned = false;
+                slamming = false;
+                transform.Translate(0, 0, -1.0f);
                 if (!charging)
                 {
                     bossAnimator.SetBool("Charging", true);
                     charging = true;
                     // Check for a collision, if a with wall then stun, otherwise slam.
                 }
+                else
+                {
+                    // Check for a collision, if a with wall then stun, otherwise slam.
+
+                    // Afterwards, set charging to false and switch to either slam or stunned
+                }
                 break;
             case State.Slam:
                 if (!slamming)
                 {
                     // If is only here to stop animation from resetting. After this, should return to charging
+                    bossAnimator.SetTrigger("Slam");
+                    slamming = true;
                 }
                 break;
             case State.Stunned:
+                if (!stunned)
+                {
+                    bossAnimator.SetTrigger("Bonk");
+                    transform.Translate(0, 0, 50.0f);
+                    stunned = true;
+                }
                 break;
             case State.Dead:
             if (!dead) 
@@ -68,5 +93,41 @@ public class GolemBossController : EnemyController
             }
                 break;
         }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if (charging){
+            attackDamage = -3;
+            if (other.gameObject.tag == "Impenetrable")
+            {
+                attackDamage = 0;
+                state = State.Stunned;
+            }
+            else if (other.gameObject.tag == "Player")
+            {
+                attackDamage = 0;
+                state = State.Slam;
+            }
+        }
+    }
+
+    private void toCharging()
+    {
+        state = State.Charging;
+    }
+
+    private void toAlert()
+    {
+        state = State.Alerted;
+    }
+
+    private void toStunned()
+    {
+        state = State.Stunned;
+    }
+
+    private void toSlam()
+    {
+        state = State.Slam;
     }
 }
