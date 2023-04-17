@@ -1024,6 +1024,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2820346472088310552, guid: f12f6f845d8d8c44f916b7defd770ba0, type: 3}
+      propertyPath: proj
+      value: 
+      objectReference: {fileID: 2199185753561327188, guid: 3c272ed6ec8b3e04c8fc74126aae62a9, type: 3}
+    - target: {fileID: 2820346472088310552, guid: f12f6f845d8d8c44f916b7defd770ba0, type: 3}
       propertyPath: despawnTime
       value: 0.8
       objectReference: {fileID: 0}
@@ -3651,7 +3655,7 @@ PrefabInstance:
     - target: {fileID: 3114710725018460798, guid: 9c86c8acd3bc98e4bb25b85c88ca86c0, type: 3}
       propertyPath: enemyDrop
       value: 
-      objectReference: {fileID: 5191327861972386730, guid: e0a90efad4c4f44ada935253972f046f, type: 3}
+      objectReference: {fileID: 2199185753561327188, guid: 3c272ed6ec8b3e04c8fc74126aae62a9, type: 3}
     - target: {fileID: 5038161141665949287, guid: 9c86c8acd3bc98e4bb25b85c88ca86c0, type: 3}
       propertyPath: m_Name
       value: Enemy
