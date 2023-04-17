@@ -18,12 +18,13 @@ public class PlayerController : MonoBehaviour
     private float playerSpeed = 150.0f;
 
     private float basePlayerSpeed;
-    private float sprintPlayerSpeedMultiplier = 1.25f;
+    private float sprintPlayerSpeedMultiplier = 1.5f;
+    private float sprintPlayerSpeed;
     private float gravity = -2.0f;
 
     private bool isDashing = false; //is the player currently dashing
     private float dashTime = 0f; // how long the increased playerSpeed/dashTime goes for
-    private float dashPlayerSpeedMultiplier = 1.5f;
+    private float dashPlayerSpeedMultiplier = 3.5f;
     float dashSpeed; // how fast the player goes during the dash
     float dashCooldown = 3f; //how long until the player can dash again
     float canDash = 0f; //Time.time + dashCooldown = canDash. Used in the comparison
@@ -35,7 +36,8 @@ public class PlayerController : MonoBehaviour
         pStats = controller.gameObject.GetComponent<PlayerStats>();
         playerAnimator = gameObject.GetComponent<Animator>();
         basePlayerSpeed = playerSpeed;
-        dashSpeed = basePlayerSpeed * dashPlayerSpeedMultiplier;
+        dashSpeed = playerSpeed * dashPlayerSpeedMultiplier;
+        sprintPlayerSpeed = playerSpeed * sprintPlayerSpeedMultiplier;
     }
 
     // Update is called once per frame
@@ -83,10 +85,11 @@ public class PlayerController : MonoBehaviour
         {
             controller.Move(moveDash * Time.deltaTime * dashSpeed);
             dashTime += Time.deltaTime;
-            playerAnimator.SetTrigger("Dash");
+            playerAnimator.SetBool("Dash", true);
             yield return null;
         }
         isDashing = false;
+        playerAnimator.SetBool("Dash",false);
         canDash = Time.time + dashCooldown;
         yield return null;
     }
@@ -95,7 +98,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetAxis("Sprint") > 0)
         {
-            playerSpeed *= sprintPlayerSpeedMultiplier;
+            playerSpeed = sprintPlayerSpeed;
         }
         else
         {

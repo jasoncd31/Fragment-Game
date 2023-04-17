@@ -96,6 +96,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 730cb08ebdfd132469602f2173b8286f, type: 3}
   m_PrefabInstance: {fileID: 1181594111339284118}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2063972736062946247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 730cb08ebdfd132469602f2173b8286f, type: 3}
+  m_PrefabInstance: {fileID: 1181594111339284118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8151784982754522833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063972736062946247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149939348aaa2ef42949512d6212f07e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 4747324703817546353}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1001 &3995688874060247291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,6 +126,22 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 2321115409546025087}
+    - target: {fileID: 4244773849779415526, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5283564617779850880, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457152500199056913, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.013659888
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457152500199056913, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0104508875
+      objectReference: {fileID: 0}
     - target: {fileID: 8544009597880126090, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -230,6 +265,10 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 8142714059124646454}
+    - target: {fileID: 8594769873432438221, guid: 586e75093b48a4cb1bf28b594961402f, type: 3}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8594769873432438223, guid: 586e75093b48a4cb1bf28b594961402f, type: 3}
       propertyPath: m_Name
       value: Main Camera

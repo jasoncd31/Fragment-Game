@@ -169,12 +169,14 @@ public class LevelGenerator : MonoBehaviour
                 GameObject player = Instantiate(playerPrefab, new Vector3(playerSpawn[0] * TILE_OFFSET, 0, playerSpawn[1] * TILE_OFFSET), Quaternion.identity);
 
                 PlayerController playerController = player.GetComponent<PlayerController>();
-                Camera playerCamera = Instantiate(this.playerCamera, this.playerCamera.transform.position, this.playerCamera.transform.rotation);
 
-                FollowObject cameraTransform = playerCamera.GetComponent<FollowObject>();
-                cameraTransform.playerObject = player.transform;
+                //Sorry Kieran, I put the camera with the player U+1F97A
+                //Camera playerCamera = Instantiate(this.playerCamera, this.playerCamera.transform.position, this.playerCamera.transform.rotation);
 
-                playerController.mainCam = playerCamera;
+                //FollowObject cameraTransform = playerCamera.GetComponent<FollowObject>();
+                //cameraTransform.playerObject = player.transform;
+
+                //playerController.mainCam = playerCamera;
                 
                 break;
             }
