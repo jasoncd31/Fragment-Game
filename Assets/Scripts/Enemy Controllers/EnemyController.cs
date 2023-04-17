@@ -28,7 +28,10 @@ public class EnemyController : MonoBehaviour
         Alerted,
         Striking,
         Returning,
-        Dead
+        Dead,
+        Charging,
+        Slam,
+        Stunned
     }
     public State state;
 

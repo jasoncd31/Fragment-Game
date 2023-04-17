@@ -7,22 +7,13 @@ public class GolemBossController : EnemyController
     [SerializeField]
     private GameObject player;
     private Vector3 toPlayer;
+    private Animator bossAnimator;
 
     [SerializeField]
     private float aggroDistance;
     private bool dead = false;
     private bool charging = false;
     private bool slamming = false;
-
-    private enum State 
-    {
-        Idle,
-        Charging,
-        Slam,
-        Stunned,
-        Dead
-    }
-    private State state;
 
     public GolemBossController()
     {
@@ -38,7 +29,7 @@ public class GolemBossController : EnemyController
     // Start is called before the first frame update
     void Start()
     {
-        
+        bossAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -57,6 +48,8 @@ public class GolemBossController : EnemyController
             case State.Charging:
                 if (!charging)
                 {
+                    bossAnimator.SetBool("Charging", true);
+                    charging = true;
                     // Check for a collision, if a with wall then stun, otherwise slam.
                 }
                 break;
@@ -71,7 +64,7 @@ public class GolemBossController : EnemyController
             case State.Dead:
             if (!dead) 
             {
-                dead = true;
+                StopExisting();
             }
                 break;
         }
