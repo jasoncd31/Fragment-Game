@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 lookPos;
 
     [SerializeField]
-    private Camera mainCam;
+    public Camera mainCam;
     private Vector3 playerVelocity;
 
     [SerializeField]
