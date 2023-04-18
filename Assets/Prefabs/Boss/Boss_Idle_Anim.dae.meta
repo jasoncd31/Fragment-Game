@@ -3,7 +3,22 @@ guid: a804131ef69564a47892c17d9116adf2
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ArmorPieces
+    second: {fileID: 2100000, guid: af6b13980610d44cc9fc6f8be84c46a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fragment_Shards
+    second: {fileID: 2100000, guid: 8e22065bc906e402d85be893a9aff9d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: aiStandardSurface3
+    second: {fileID: 2100000, guid: 220e828efea774c4b8a9dbb7023843fc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

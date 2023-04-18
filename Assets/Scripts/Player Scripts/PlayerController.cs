@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private float sprintPlayerSpeed;
     private float gravity = -2.0f;
 
+    private bool attacking = false;
+
     private bool isDashing = false; //is the player currently dashing
     private float dashTime = 0f; // how long the increased playerSpeed/dashTime goes for
     private float dashPlayerSpeedMultiplier = 3.5f;
@@ -67,6 +69,16 @@ public class PlayerController : MonoBehaviour
                 dashTime = 0f;
                 StartCoroutine(DashCo());
             }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!attacking)
+            {
+                playerAnimator.SetTrigger("Attacking");
+                attacking = true;
+            }
+            
         }
 
         //die if you fall off floor
@@ -138,5 +150,10 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("Forward", false);
             playerAnimator.SetBool("Backward", true);
         }
+    }
+
+    private void AttackDone()
+    {
+        attacking = false;
     }
 }
