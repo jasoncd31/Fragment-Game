@@ -6,7 +6,7 @@ public class SpawnRandomObjects : MonoBehaviour
 {
     public List<GameObject> plants = new List<GameObject>();
     public GameObject parent;
-    public int numOfObj = 3;
+    public int numOfObj = 40;
 
     // Start is called before the first frame update
     void Start()
@@ -14,8 +14,22 @@ public class SpawnRandomObjects : MonoBehaviour
         for (var i = 0; i < numOfObj; i++)
         {
             //Vector3 rotation = new Vector3(0.0f, Random.Range(0.0f, 180.0f), 0, 0f);
-            Instantiate(plants[Random.Range(0,3)], new Vector3(Random.Range(-10.0f,10.0f) + parent.transform.position.x, 0.0f, Random.Range(-10.0f, 10.0f) + parent.transform.position.z), Quaternion.identity);
-            Debug.LogWarning("Spawned object");
+            Instantiate(plants[0], new Vector3(Random.Range(-50.0f,50.0f) + parent.transform.position.x, 0.0f, Random.Range(-50.0f, 50.0f) + parent.transform.position.z), Quaternion.identity);
+        }
+
+        for (var i = 0; i < 2; i++)
+        {
+            Instantiate(plants[1], new Vector3(Random.Range(-40.0f, 40.0f) + parent.transform.position.x, 0.0f, Random.Range(-40.0f, 40.0f) + parent.transform.position.z), Quaternion.identity);
+        }
+
+        for (var i = 0; i < 1; i++)
+        {
+            Instantiate(plants[2], new Vector3(Random.Range(-40.0f, 40.0f) + parent.transform.position.x, 0.0f, Random.Range(-40.0f, 40.0f) + parent.transform.position.z), Quaternion.identity);
+        }
+
+        for (var i = 0; i < 1; i++)
+        {
+            Instantiate(plants[3], new Vector3(Random.Range(-40.0f, 40.0f) + parent.transform.position.x, 0.0f, Random.Range(-40.0f, 40.0f) + parent.transform.position.z), Quaternion.identity);
         }
     }
 }
