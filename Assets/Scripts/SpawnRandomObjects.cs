@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SpawnRandomObjects : MonoBehaviour
 {
-    public GameObject objectRef;
-    public int numOfObj = 10;
+    public List<GameObject> plants = new List<GameObject>();
+    public GameObject parent;
+    public int numOfObj = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -13,7 +14,8 @@ public class SpawnRandomObjects : MonoBehaviour
         for (var i = 0; i < numOfObj; i++)
         {
             //Vector3 rotation = new Vector3(0.0f, Random.Range(0.0f, 180.0f), 0, 0f);
-            Instantiate(objectRef, new Vector3(Random.Range(-50.0f,50.0f), 0.0f, Random.Range(-50.0f, 50.0f)), Quaternion.identity);
+            Instantiate(plants[Random.Range(0,3)], new Vector3(Random.Range(-10.0f,10.0f) + parent.transform.position.x, 0.0f, Random.Range(-10.0f, 10.0f) + parent.transform.position.z), Quaternion.identity);
+            Debug.LogWarning("Spawned object");
         }
     }
 }
