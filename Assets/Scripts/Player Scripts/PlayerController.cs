@@ -50,10 +50,8 @@ public class PlayerController : MonoBehaviour
         {
             StopCoroutine(DashCo());
             move = new Vector3(Input.GetAxis("Horizontal"), gravity, Input.GetAxis("Vertical"));
-            controller.Move(move * Time.deltaTime * playerSpeed);
-            // Debug.Log(move * Time.deltaTime * playerSpeed);
-            // Debug.Log(playerSpeed);
-            if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0)
+            controller.Move(playerSpeed * Time.deltaTime * move);
+            if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {
                 PlayMovingAnimation();
             }
@@ -62,6 +60,8 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetBool("Forward", false);
                 playerAnimator.SetBool("Backward", false);
             }
+
+
             if (Input.GetKeyDown(KeyCode.Space) && Time.time > canDash)
             {
                 dashTime = 0f;
