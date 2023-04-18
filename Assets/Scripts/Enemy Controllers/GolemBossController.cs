@@ -32,6 +32,7 @@ public class GolemBossController : EnemyController
     void Start()
     {
         bossAnimator = GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame

@@ -28,6 +28,7 @@ public class DartFlowerController : EnemyController
         agent = GetComponent<NavMeshAgent>();
         flowerAnimator = GetComponent<Animator>();
         dropSpeed = 5f;
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
