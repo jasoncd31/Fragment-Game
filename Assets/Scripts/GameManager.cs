@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     }
     public void PlayLevel()
     {
-        SceneManager.LoadScene("DemoScene");
+        SceneManager.LoadScene("LevelGenerationTest");
     }
     public void GoToMainMenu()
     {

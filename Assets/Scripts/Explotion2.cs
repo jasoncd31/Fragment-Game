@@ -1,10 +1,11 @@
+//Erik
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Explotion2 : MonoBehaviour
 {
-    public float delay = 7f;
+    public float delay = 2f;
     public float radius = 5f;
     public float force = 7000f;
 
