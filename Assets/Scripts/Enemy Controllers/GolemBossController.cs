@@ -61,7 +61,7 @@ public class GolemBossController : EnemyController
             case State.Charging:
                 stunned = false;
                 slamming = false;
-                transform.Translate(0, 0, 1.0f);
+                transform.Translate(0, 0, 10.0f);
                 if (!charging)
                 {
                     LookToPlayer();
