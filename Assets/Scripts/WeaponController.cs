@@ -14,7 +14,7 @@ public class WeaponController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) 
         {
-            Debug.Log("hey mama hey mama look around");
+            // Debug.Log("hey mama hey mama look around");
             if (canAttack) 
             {
                 Strike();
