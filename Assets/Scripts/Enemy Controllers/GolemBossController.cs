@@ -37,6 +37,10 @@ public class GolemBossController : EnemyController
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < -10)
+        {
+            state = State.Dead;
+        }
         toPlayer = player.transform.position - transform.position;
 
         switch(state)
@@ -56,23 +60,20 @@ public class GolemBossController : EnemyController
             case State.Charging:
                 stunned = false;
                 slamming = false;
-                transform.Translate(0, 0, -1.0f);
+                transform.Translate(0, 0, 1.0f);
                 if (!charging)
                 {
+                    LookToPlayer();
                     bossAnimator.SetBool("Charging", true);
                     charging = true;
                     // Check for a collision, if a with wall then stun, otherwise slam.
-                }
-                else
-                {
-                    // Check for a collision, if a with wall then stun, otherwise slam.
-
-                    // Afterwards, set charging to false and switch to either slam or stunned
                 }
                 break;
             case State.Slam:
                 if (!slamming)
                 {
+                    charging = false;
+                    stunned = false;
                     // If is only here to stop animation from resetting. After this, should return to charging
                     bossAnimator.SetTrigger("Slam");
                     slamming = true;
@@ -81,8 +82,10 @@ public class GolemBossController : EnemyController
             case State.Stunned:
                 if (!stunned)
                 {
+                    slamming = false;
+                    charging = false;
                     bossAnimator.SetTrigger("Bonk");
-                    transform.Translate(0, 0, 50.0f);
+                    transform.Translate(0, 0, -50.0f);
                     stunned = true;
                 }
                 break;
@@ -129,5 +132,10 @@ public class GolemBossController : EnemyController
     private void toSlam()
     {
         state = State.Slam;
+    }
+
+    private void LookToPlayer()
+    {
+        transform.LookAt(player.transform);
     }
 }
