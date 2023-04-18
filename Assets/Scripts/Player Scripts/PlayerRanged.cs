@@ -27,6 +27,9 @@ public class PlayerRanged : MonoBehaviour
             Rigidbody fireballRigid = fireball.GetComponent<Rigidbody>();
             //add velocity to rigidbody component
             fireballRigid.velocity = transform.TransformDirection(Vector3.forward * projVelocity);
+
+            fireball.transform.rotation = Quaternion.LookRotation(fireballRigid.velocity) * Quaternion.Euler(0, -90, 0);
+
             Destroy(fireball, despawnTime);
 
             
