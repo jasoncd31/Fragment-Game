@@ -1,3 +1,4 @@
+//Erik
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class DistanceAttack : MonoBehaviour
     public float throwForce;
     public float throwUpwardForce;
 
-    public float delay = 3f;
+    public float delay = 2f;
     public GameObject ExplosionEffect;
     float countdown;
     bool hasExploded = false;
