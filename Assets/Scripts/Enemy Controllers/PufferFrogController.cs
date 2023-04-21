@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SlimeController : EnemyController
+public class PufferFrogController : EnemyController
 {
     public GameObject player;
-    public float aggroDistance = 20f;
-    public float retreatDistance = 50f;
+    public float aggroDistance = 50f;
+    public float retreatDistance = 100f;
+    public float attackRange = 10f;
     Vector3 toPlayer;
     Vector3 toAnchor;
 
-    public SlimeController()
+    private Animator frogAnimator;
+
+    public PufferFrogController()
     {
         health = 1;
         attackDamage = -1;
@@ -27,6 +30,8 @@ public class SlimeController : EnemyController
         anchor = transform.position;
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
+        frogAnimator = GetComponent<Animator>();
+        agent.isStopped = true;
     }
 
     // Update is called once per frame
@@ -40,6 +45,7 @@ public class SlimeController : EnemyController
                 if (toPlayer.magnitude < aggroDistance)
                 {
                     state = State.Alerted;
+                    frogAnimator.SetBool("Alert", true);
                 }
                 break;
             case State.Alerted:
@@ -47,6 +53,10 @@ public class SlimeController : EnemyController
                 if (toAnchor.magnitude > retreatDistance) 
                 {
                     state = State.Returning;
+                }
+                if (toPlayer.magnitude < attackRange)
+                {
+                    state = State.Striking;
                 }
                 break;
             case State.Returning:
@@ -56,9 +66,30 @@ public class SlimeController : EnemyController
                     state = State.Idle;
                 }
                 break;
+            case State.Striking:
+                StopMoving();
+                frogAnimator.SetTrigger("Attacking");
+                break;
             case State.Dead:
                 StopExisting();
                 break;
         }
+    }
+
+    private void toIdle()
+    {
+        state = State.Idle;
+        agent.isStopped = false;
+        frogAnimator.SetBool("Alert", false);
+    }
+
+    private void StopMoving()
+    {
+        agent.isStopped = true;
+    }
+
+    private void ResumeMoving()
+    {
+        agent.isStopped = false;
     }
 }
