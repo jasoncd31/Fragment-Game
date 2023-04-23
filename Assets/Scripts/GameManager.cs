@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour 
 {
     private Scene currentScene;
     private bool paused = false;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         {
             mainMenuCanvas.GetComponent<Canvas>().enabled = false;
         }
-        
+            
     }
 
     // Update is called once per frame
@@ -32,10 +32,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !currentScene.name.Equals("MainMenu"))
         {
-            GoToMainMenu();
+            PauseGame();
         }
     }
-    void PauseGame()
+    public void PauseGame()
     {
         if (paused)
         {
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     }
     public void PlayLevel()
     {
-        SceneManager.LoadScene("DemoScene");
+        SceneManager.LoadScene("LevelGenerationTest");
     }
     public void GoToMainMenu()
     {
@@ -80,6 +80,9 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("bye bye");
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying=false;
+        #endif
         Application.Quit();
     }
 }

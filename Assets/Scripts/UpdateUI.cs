@@ -5,7 +5,7 @@ using TMPro;
 
 public class UpdateUI : MonoBehaviour
 {
-    public TextMeshProUGUI playerUI;
+    public TextMeshProUGUI healthUI;
     public PlayerStats player;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +20,6 @@ public class UpdateUI : MonoBehaviour
     }
     private void updateHealthText()
     {
-        playerUI.text = "Health: " + player.cHealth;
+        healthUI.text = "Health: " + player.cHealth;
     }
 }
