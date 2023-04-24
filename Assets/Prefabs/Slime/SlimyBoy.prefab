@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5045444116166651468}
   - component: {fileID: 5045444116166651471}
   - component: {fileID: 5045444116166651470}
-  - component: {fileID: 5045444116166651465}
   - component: {fileID: 5045444116166651464}
   - component: {fileID: 5045444116166651474}
+  - component: {fileID: 1126982380074909789}
   m_Layer: 0
   m_Name: SlimyBoy
   m_TagString: Enemy
@@ -82,31 +82,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5045444116166651465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5045444116166651467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006376e8665744f39b2f8115485dc5d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  attackDamage: -1
-  enemyDrop: {fileID: 5191327861972386730, guid: e0a90efad4c4f44ada935253972f046f, type: 3}
-  bullet: {fileID: 0}
-  projVelocity: 0
-  lifespan: 0
-  anchor: {x: 0, y: 0, z: 0}
-  goal: {fileID: 0}
-  agent: {fileID: 0}
-  state: 0
-  player: {fileID: 0}
-  aggroDistance: 50
-  retreatDistance: 200
 --- !u!195 &5045444116166651464
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -117,8 +92,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 200
-  m_Acceleration: 20
+  m_Speed: 50
+  m_Acceleration: 200
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0
@@ -131,7 +106,7 @@ NavMeshAgent:
   m_ObstacleAvoidanceType: 4
 --- !u!95 &5045444116166651474
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,7 +123,32 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1126982380074909789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5045444116166651467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c98e74e2385e441f9bea9ca69ec740b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  attackDamage: -1
+  enemyDrop: {fileID: 5191327861972386730, guid: e0a90efad4c4f44ada935253972f046f, type: 3}
+  bullet: {fileID: 0}
+  projVelocity: 0
+  lifespan: 0
+  anchor: {x: 0, y: 0, z: 0}
+  goal: {fileID: 0}
+  agent: {fileID: 0}
+  state: 0
+  player: {fileID: 0}
+  aggroDistance: 150
+  retreatDistance: 300
 --- !u!1001 &5045444116135783668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &5045444117720543665
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -259,7 +259,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!4 &4724203219799427871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aef3a3ce40be2514786127df39147b48, type: 3}
