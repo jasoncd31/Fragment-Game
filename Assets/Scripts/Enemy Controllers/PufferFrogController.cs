@@ -92,4 +92,12 @@ public class PufferFrogController : EnemyController
     {
         agent.isStopped = false;
     }
+
+    private void SpawnHitbox() 
+    {
+        GameObject hitbox = Instantiate(bullet);
+        hitbox.transform.position = new Vector3(transform.position.x, transform.position.y + 20, transform.position.z) + transform.forward * 20f;
+        hitbox.transform.rotation = transform.rotation;
+        Destroy(hitbox, lifespan);
+    }
 }

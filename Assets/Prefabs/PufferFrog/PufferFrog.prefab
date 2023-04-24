@@ -53,9 +53,9 @@ MonoBehaviour:
   health: 5
   attackDamage: -1
   enemyDrop: {fileID: 5191327861972386730, guid: e0a90efad4c4f44ada935253972f046f, type: 3}
-  bullet: {fileID: 0}
+  bullet: {fileID: 9037744704334315685, guid: 9d66ab51d37414bf48d9019cd8881f3d, type: 3}
   projVelocity: 0
-  lifespan: 0
+  lifespan: 0.5
   anchor: {x: 0, y: 0, z: 0}
   goal: {fileID: 0}
   agent: {fileID: 0}
