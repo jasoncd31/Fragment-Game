@@ -404,6 +404,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music:
   - {fileID: 8300000, guid: 2b516c9334b88427aa573ab37a6f48c2, type: 3}
+  - {fileID: 8300000, guid: 6a273bf672b78482993c254709234295, type: 3}
+  - {fileID: 8300000, guid: 54195e6f2917d4704964f46524fba3cc, type: 3}
+  audio: {fileID: 0}
   instructionPanel: {fileID: 2647202197127893459}
   buttonPanel: {fileID: 3962523482277340117}
   escapeMenuCanvas: {fileID: 3244547615032755607}

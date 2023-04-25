@@ -94,7 +94,17 @@ public class GameManager : MonoBehaviour
 
     void MusicPlayer()
     {
-        audio.clip = music[0];
-        audio.Play();
+        if(currentScene.name.Equals("MainMenu"))
+        {
+            audio.clip = music[0];
+            audio.Play();
+            return;
+        }
+        if(currentScene.name.Equals("LevelGenerationTest"))
+        {
+            audio.clip = music[1];
+            audio.Play();
+            return;
+        }
     }
 }
