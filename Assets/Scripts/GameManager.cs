@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     private bool paused = false;
     private bool instructionsPresent = false;
 
+    public List<AudioClip> music = new List<AudioClip>();
+    public AudioSource audio;
+
     public GameObject instructionPanel;
     public GameObject buttonPanel;
     public GameObject escapeMenuCanvas;
@@ -20,10 +23,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Active Scene is '" + currentScene.name + "'.");
         escapeMenuCanvas.GetComponent<Canvas>().enabled = false;
         instructionPanel.SetActive(false);
+        audio = GetComponent<AudioSource>();
+
         if (!currentScene.name.Equals("MainMenu"))
         {
             mainMenuCanvas.GetComponent<Canvas>().enabled = false;
         }
+        MusicPlayer();
             
     }
 
@@ -84,5 +90,11 @@ public class GameManager : MonoBehaviour
             UnityEditor.EditorApplication.isPlaying=false;
         #endif
         Application.Quit();
+    }
+
+    void MusicPlayer()
+    {
+        audio.clip = music[0];
+        audio.Play();
     }
 }

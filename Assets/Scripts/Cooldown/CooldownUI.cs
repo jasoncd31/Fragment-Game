@@ -82,7 +82,7 @@ public class CooldownUI : MonoBehaviour
     }
     void RangedAttackCD()
     {
-        if (Input.GetKeyDown(KeyCode.F) && isCooldown3 == false)
+        if (Input.GetMouseButtonDown(1) && isCooldown3 == false)
         {
             isCooldown3 = true;
             abilityImage3.fillAmount = 1;
