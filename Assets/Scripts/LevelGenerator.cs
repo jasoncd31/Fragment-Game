@@ -66,33 +66,43 @@ public class LevelGenerator : MonoBehaviour
     {
         bool generationComplete = false;
         int generationAttempts = 1;
+
+        int levelSeed = string.IsNullOrEmpty(seed) ? (int)DateTime.Now.Ticks : seed.GetHashCode();
+        Debug.Log(String.Format("Seed: {0}", levelSeed));
+        rand = new System.Random(levelSeed);
+
         while (!generationComplete)
         {
             Debug.Log(String.Format("Generating terrain: attempt {0}", generationAttempts));
             
             generationComplete = GenerateLevel();
             generationAttempts++;
+
             if(generationAttempts > 5)
             {
                 throw new Exception("Something has gone horribly wrong.");
             }
-            if(!generationComplete)
+
+            if(generationComplete)
             {
-                foreach (var obj in GameObject.FindObjectsOfType<GameObject>())
-                {
-                    Destroy(obj);
-                }
-                walkable.Clear();
+                break;
             }
+
+            if(!string.IsNullOrEmpty(seed))
+            {
+                throw new Exception("Bad seed given.");
+            }
+            
+            foreach (var obj in GameObject.FindObjectsOfType<GameObject>())
+            {
+                Destroy(obj);
+            }
+            walkable.Clear();
         }
     }
 
     bool GenerateLevel()
     {
-        seed = string.IsNullOrEmpty(seed) ? DateTime.Now.ToString() : seed;
-        rand = new System.Random(seed.GetHashCode());
-
-        Debug.Log(String.Format("Generating terrain with seed {0}", seed));
 
         CreateTerrain();
 
@@ -177,17 +187,6 @@ public class LevelGenerator : MonoBehaviour
                 playerSpawn = potentialPlayerSpawn;
                 spawnFound = true;
                 Debug.Log(String.Format("Player spawn set at ({0}, {1}).", playerSpawn[0], playerSpawn[1]));
-                // GameObject player = Instantiate(playerPrefab, new Vector3(playerSpawn[0] * TILE_OFFSET, 0, playerSpawn[1] * TILE_OFFSET), Quaternion.identity);
-
-                // PlayerController playerController = player.GetComponent<PlayerController>();
-
-                //Sorry Kieran, I put the camera with the player U+1F97A
-                //Camera playerCamera = Instantiate(this.playerCamera, this.playerCamera.transform.position, this.playerCamera.transform.rotation);
-
-                //FollowObject cameraTransform = playerCamera.GetComponent<FollowObject>();
-                //cameraTransform.playerObject = player.transform;
-
-                //playerController.mainCam = playerCamera;
                 
                 break;
             }
@@ -234,7 +233,7 @@ public class LevelGenerator : MonoBehaviour
         while(possibleSpawnPoints.Count > 0)
         {
             int[] potentialSpawnPoint = possibleSpawnPoints[rand.Next(0, possibleSpawnPoints.Count)];
-            Debug.Log(String.Format("Checking ({0}, {1})", potentialSpawnPoint[0], potentialSpawnPoint[1]));
+            Debug.Log(String.Format("Checking potential boss room center ({0}, {1})", potentialSpawnPoint[0], potentialSpawnPoint[1]));
             List<int[]> tilesAroundBossRoom = GetTilesInRadius(potentialSpawnPoint[0], potentialSpawnPoint[1], BOSS_ROOM_RADIUS);
             if (tilesAroundBossRoom.Count == (Math.Pow(BOSS_ROOM_RADIUS, 2) + BOSS_ROOM_RADIUS) * 4)
             {
