@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
     private void SpawnCollectible()
     {
         Vector3 CollectiblePosition = transform.position;
-        GameObject CollectibleSpawner = Instantiate(enemyDrop, CollectiblePosition, Quaternion.identity);
+        GameObject CollectibleSpawner = Instantiate(enemyDrop, CollectiblePosition, Quaternion.Euler(0,0,270));
         Rigidbody CollectibleBody = CollectibleSpawner.GetComponent<Rigidbody>();
         float randX = Random.Range(-1, 1);
         float randZ = Random.Range(-1, 1);

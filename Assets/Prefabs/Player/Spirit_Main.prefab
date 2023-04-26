@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fce60b94a29a445b7ee8ae611a358f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 30
 --- !u!114 &1110863949992093184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   mainCam: {fileID: 0}
+  playerSpeed: 150

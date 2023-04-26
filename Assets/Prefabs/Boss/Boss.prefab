@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8008043624367638800}
   - component: {fileID: 49387561}
   - component: {fileID: 49387557}
-  - component: {fileID: 49387562}
-  - component: {fileID: 3690154502829759288}
+  - component: {fileID: 5565376725808570035}
+  - component: {fileID: 7585724519422769956}
   m_Layer: 2
   m_Name: Boss
   m_TagString: Enemy
@@ -46,8 +46,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970401472533718299}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a05b153041e68064ba3f87f4d0952ba0, type: 3}
-  m_Controller: {fileID: 9100000, guid: f4d3a29c6d06be2489e46f0cc05e0a1d, type: 2}
+  m_Avatar: {fileID: 9000000, guid: a804131ef69564a47892c17d9116adf2, type: 3}
+  m_Controller: {fileID: 9100000, guid: 895c0c1e75be1884c8c96fffeead967e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -86,22 +86,8 @@ CapsuleCollider:
   m_Radius: 45
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 35, z: 10}
---- !u!136 &49387562
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970401472533718299}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 45
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 35, z: 10}
---- !u!114 &3690154502829759288
+  m_Center: {x: 0, y: 35, z: 5.23}
+--- !u!114 &5565376725808570035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +110,20 @@ MonoBehaviour:
   agent: {fileID: 0}
   state: 0
   player: {fileID: 0}
-  aggroDistance: 150
+  aggroDistance: 200
+--- !u!65 &7585724519422769956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970401472533718299}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 55.94435, y: 82.99054, z: 82.95148}
+  m_Center: {x: 4.066231, y: 36.49527, z: -6.6211853}
 --- !u!1001 &7184013704152901717
 PrefabInstance:
   m_ObjectHideFlags: 0

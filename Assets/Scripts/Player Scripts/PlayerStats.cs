@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     //Health Stats
+    [SerializeField]
     private int maxHealth = 5;
     private int currentHealth;
     public int mHealth { get { return maxHealth; } }
     public int cHealth { get { return currentHealth; } }
     private int fragmentCount = 0;
+    public int cFragments { get { return fragmentCount; } }
     // Start is called before the first frame update
     void Start()
     {

@@ -33,6 +33,14 @@ public class GolemBossController : EnemyController
     {
         bossAnimator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Debug.Log("Player not found");
+        }
+        else
+        {
+            Debug.Log("Player found");
+        }
     }
 
     // Update is called once per frame
@@ -43,6 +51,7 @@ public class GolemBossController : EnemyController
             state = State.Dead;
         }
         toPlayer = player.transform.position - transform.position;
+        Debug.Log(toPlayer.magnitude);
 
         switch(state)
         {

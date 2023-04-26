@@ -28,6 +28,9 @@ public class Collectable : MonoBehaviour
             {
                 playerStats.changeHealth(-1);
             }
+            else if(tag.Equals("Fragment")){
+                playerStats.fragmentPickup(1);
+            }
             Destroy(gameObject);
         }
     }

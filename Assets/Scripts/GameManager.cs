@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
         }
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("J");
+            StaticLevel();
+        }
     }
     public void PauseGame()
     {
@@ -69,6 +74,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("hey look ma i made it");
     }
+    public void StaticLevel()
+    {
+        SceneManager.LoadScene("StaticTestLevel");
+    }
+
     public void Instructions()
     {
         if (instructionsPresent)
@@ -103,6 +113,12 @@ public class GameManager : MonoBehaviour
         if(currentScene.name.Equals("LevelGenerationTest"))
         {
             audio.clip = music[1];
+            audio.Play();
+            return;
+        }
+        if(currentScene.name.Equals("StaticTestLevel"))
+        {
+            audio.clip = music[2];
             audio.Play();
             return;
         }

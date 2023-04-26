@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6286132419854725481, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
       propertyPath: m_Name
-      value: Solid_HalfWall_v010
+      value: Solid_HalfWall_v010 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286132419854725481, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
+      propertyPath: m_TagString
+      value: Impenetrable
       objectReference: {fileID: 0}
     - target: {fileID: 6662799181418179539, guid: f59ea92d1dd9df842a682161bdff12a7, type: 3}
       propertyPath: m_RootOrder

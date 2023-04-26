@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5630775224116287270}
   - component: {fileID: 5630775224116287271}
   - component: {fileID: 5630775224116287256}
-  - component: {fileID: 2957366762308741935}
   - component: {fileID: 2141925933521625189}
   m_Layer: 0
   m_Name: GroundPlane_Grass_0
@@ -100,36 +99,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2957366762308741935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5630775224116287257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
-  m_BuildHeightMesh: 0
 --- !u!114 &2141925933521625189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +114,7 @@ MonoBehaviour:
   plants:
   - {fileID: 919132149155446097, guid: 659dd218a77282841ad5df0330a49fed, type: 3}
   - {fileID: 919132149155446097, guid: 4c400cd1e56c2475dbb2adb1dac277b9, type: 3}
-  - {fileID: 919132149155446097, guid: 17557a0542f0c5341b79b384c030d471, type: 3}
+  - {fileID: 919132149155446097, guid: 2207c1f4f0d0cc346af4f2bf1c23b9b9, type: 3}
   - {fileID: 919132149155446097, guid: a55ac525a0b4f4a4b940ae8a4241521d, type: 3}
   parent: {fileID: 5630775224116287257}
   numOfObj: 40
