@@ -19,14 +19,14 @@ public class SlimeController : EnemyController
         bullet = null;
         projVelocity = 0f;
         lifespan = 0f;
-        state = State.Alerted;
+        state = State.Idle;
     }
     // Start is called before the first frame update
     private void Start()
     {
         anchor = transform.position;
         agent = GetComponent<NavMeshAgent>();
-
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -48,8 +48,6 @@ public class SlimeController : EnemyController
                 {
                     state = State.Returning;
                 }
-                break;
-            case State.Striking:
                 break;
             case State.Returning:
                 agent.destination = anchor;

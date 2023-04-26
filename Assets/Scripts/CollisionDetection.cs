@@ -9,7 +9,7 @@ public class CollisionDetection : MonoBehaviour
 
    private void OnTriggerEnter(Collider other)
    {
-       if (other.tag == "Enemy" && wp.isAttacking)
+       if (other.tag == "Enemy")
        {
            Debug.Log("oof");
            EnemyController enemy = other.GetComponent<EnemyController>();
