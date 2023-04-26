@@ -292,6 +292,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5283564617779850880, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
+      propertyPath: m_Height
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5283564617779850880, guid: 1c86c9a2e43172349bd970481ddfe1af, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -458,6 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthUI: {fileID: 2264561454184801872}
+  fragmentUI: {fileID: 0}
   player: {fileID: 3731476119740848781}
 --- !u!114 &2264561454184801872 stripped
 MonoBehaviour:
