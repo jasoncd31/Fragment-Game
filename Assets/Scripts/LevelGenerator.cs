@@ -25,6 +25,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -68,11 +69,20 @@ public class LevelGenerator : MonoBehaviour
         while (!generationComplete)
         {
             Debug.Log(String.Format("Generating terrain: attempt {0}", generationAttempts));
+            
             generationComplete = GenerateLevel();
             generationAttempts++;
             if(generationAttempts > 5)
             {
                 throw new Exception("Something has gone horribly wrong.");
+            }
+            if(!generationComplete)
+            {
+                foreach (var obj in GameObject.FindObjectsOfType<GameObject>())
+                {
+                    Destroy(obj);
+                }
+                walkable.Clear();
             }
         }
     }
@@ -100,6 +110,7 @@ public class LevelGenerator : MonoBehaviour
             return false;
         }
 
+        PlaceTiles();
         PlaceEnemySpawns();
         MakeCliffs();
         return true;
@@ -129,7 +140,7 @@ public class LevelGenerator : MonoBehaviour
 
             map[nextTile[0], nextTile[1]] = BASIC_TILE;
             heightMap[nextTile[0], nextTile[1]] = (1, false);
-            Instantiate(terrainTile, new Vector3(nextTile[0]*TILE_OFFSET, 0, nextTile[1]*TILE_OFFSET), Quaternion.identity);
+
             walkable.Add(nextTile);
 
             List<int[]> neighbors = new List<int[]>(4);
@@ -144,7 +155,7 @@ public class LevelGenerator : MonoBehaviour
                     continue;
                 }
 
-                if (frontier.Count == 0 || (!frontier.Exists(node => node[0] == tile[0] && node[1] == tile[1]) && map[tile[0], tile[1]] == 0 && rand.Next(0, 100) > noiseLevel))
+                if (!frontier.Exists(node => node[0] == tile[0] && node[1] == tile[1]) && map[tile[0], tile[1]] == 0 && rand.Next(0, 100) > noiseLevel)
                 {
                     frontier.Add(tile);
                 }
@@ -166,9 +177,9 @@ public class LevelGenerator : MonoBehaviour
                 playerSpawn = potentialPlayerSpawn;
                 spawnFound = true;
                 Debug.Log(String.Format("Player spawn set at ({0}, {1}).", playerSpawn[0], playerSpawn[1]));
-                GameObject player = Instantiate(playerPrefab, new Vector3(playerSpawn[0] * TILE_OFFSET, 0, playerSpawn[1] * TILE_OFFSET), Quaternion.identity);
+                // GameObject player = Instantiate(playerPrefab, new Vector3(playerSpawn[0] * TILE_OFFSET, 0, playerSpawn[1] * TILE_OFFSET), Quaternion.identity);
 
-                PlayerController playerController = player.GetComponent<PlayerController>();
+                // PlayerController playerController = player.GetComponent<PlayerController>();
 
                 //Sorry Kieran, I put the camera with the player U+1F97A
                 //Camera playerCamera = Instantiate(this.playerCamera, this.playerCamera.transform.position, this.playerCamera.transform.rotation);
@@ -195,8 +206,9 @@ public class LevelGenerator : MonoBehaviour
         {
             throw new Exception("Cannot place enemies with empty enemies list!");
         }
+        var bossRoomTiles = GetTilesInRadius(bossLocation[0], bossLocation[1], BOSS_ROOM_RADIUS);
         List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
-        possibleSpawnPoints.RemoveAll(tile => tile[0] == playerSpawn[0] && tile[1] == playerSpawn[1]);
+        possibleSpawnPoints.RemoveAll(tile => (tile[0] == playerSpawn[0] && tile[1] == playerSpawn[1]) || bossRoomTiles.Contains(tile));
         foreach(int[] neighbor in GetTilesInRadius(playerSpawn[0], playerSpawn[1], 1))
         {
             possibleSpawnPoints.RemoveAll(tile => tile[0] == neighbor[0] && tile[1] == neighbor[1]);
@@ -229,8 +241,6 @@ public class LevelGenerator : MonoBehaviour
                 locationFound = true;
                 bossLocation = potentialSpawnPoint;
                 Instantiate(bossRoom, new Vector3(bossLocation[0] * TILE_OFFSET, 30f, bossLocation[1] * TILE_OFFSET), Quaternion.identity);
-                walkable.Remove(potentialSpawnPoint);
-                walkable.RemoveAll(tile => tilesAroundBossRoom.Contains(tile));
                 break;
             }
             possibleSpawnPoints.Remove(potentialSpawnPoint);
@@ -240,6 +250,20 @@ public class LevelGenerator : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    void PlaceTiles()
+    {
+        List<(GameObject, int[]) > floor = new List<(GameObject, int[])>();
+        foreach(var tile in walkable)
+        {
+            GameObject gameTile = Instantiate(terrainTile, new Vector3(tile[0] * TILE_OFFSET, 0, tile[1] * TILE_OFFSET), Quaternion.identity);
+            floor.Add((gameTile, tile));
+        }
+        
+        floor[0].Item1.GetComponent<NavMeshSurface>().BuildNavMesh();
+        
+        Instantiate(playerPrefab, new Vector3(playerSpawn[0] * TILE_OFFSET, 0, playerSpawn[1] * TILE_OFFSET), Quaternion.identity);
     }
 
     void MakeCliffs()
