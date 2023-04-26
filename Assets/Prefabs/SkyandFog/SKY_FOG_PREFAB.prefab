@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1491481990243833159
+--- !u!1 &1562812296964364096
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7999135872964643075}
-  - component: {fileID: 8675029948821556704}
+  - component: {fileID: 7926428558659439364}
+  - component: {fileID: 8746292500486836199}
   m_Layer: 0
   m_Name: Sky and Fog Global Volume
   m_TagString: Untagged
@@ -17,28 +17,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7999135872964643075
+--- !u!4 &7926428558659439364
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491481990243833159}
+  m_GameObject: {fileID: 1562812296964364096}
   m_LocalRotation: {x: -0.12063477, y: 0.8986671, z: -0.35098472, w: 0.23378302}
   m_LocalPosition: {x: 2.5604796, y: -1.4413341, z: -4.390298}
   m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1333131011664503334}
+  m_Father: {fileID: 1405911301760081953}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8675029948821556704
+--- !u!114 &8746292500486836199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491481990243833159}
+  m_GameObject: {fileID: 1562812296964364096}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
@@ -49,7 +49,7 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 16118c065f02fc943900051f9ef5bdfe, type: 2}
---- !u!1 &1765442389283953992
+--- !u!1 &1838290022326067023
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,9 +57,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1333131011664503334}
-  - component: {fileID: 3744990276950183614}
-  - component: {fileID: 3744990276950183608}
+  - component: {fileID: 1405911301760081953}
+  - component: {fileID: 3673274449461005497}
+  - component: {fileID: 3673274449461005503}
   m_Layer: 0
   m_Name: SKY_FOG_PREFAB
   m_TagString: Untagged
@@ -67,35 +67,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1333131011664503334
+--- !u!4 &1405911301760081953
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765442389283953992}
+  m_GameObject: {fileID: 1838290022326067023}
   m_LocalRotation: {x: 0.12063477, y: -0.8986671, z: 0.35098472, w: 0.23378302}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 343.67526, y: 0, z: -64.62869}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7999135872964643075}
+  - {fileID: 7926428558659439364}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 43.412, y: -152.493, z: -4.161}
---- !u!108 &3744990276950183614
+--- !u!108 &3673274449461005497
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765442389283953992}
+  m_GameObject: {fileID: 1838290022326067023}
   m_Enabled: 1
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.8392157, g: 0.97809476, b: 1, a: 1}
-  m_Intensity: 110296.555
+  m_Intensity: 7605.2183
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -138,26 +138,26 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 7609
+  m_ColorTemperature: 7093
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &3744990276950183608
+--- !u!114 &3673274449461005503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1765442389283953992}
+  m_GameObject: {fileID: 1838290022326067023}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 110296.555
+  m_Intensity: 7605.2183
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0

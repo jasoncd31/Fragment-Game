@@ -13,12 +13,13 @@ public class SwordFollow : MonoBehaviour
     private void Start()
     {
         swordCon = GetComponent<Animator>();
+        this.transform.parent = playerObject;
     }
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerObject.position + offset;
-        transform.RotateAround(transform.position, Vector3.down,transform.position.y);
+        //transform.position = playerObject.position + offset;
+        //transform.RotateAround(transform.position, Vector3.down,transform.position.y);
         if (Input.GetMouseButtonDown(0))
         {
             if (!swinging)
