@@ -177,12 +177,14 @@ public class LevelGenerator : MonoBehaviour
     {
         List<int[]> possibleSpawnPoints = walkable.GetRange(0, walkable.Count);
         bool spawnFound = false;
-        while(possibleSpawnPoints.Count > 0)
+        var bossRoomTiles = GetTilesInRadius(bossLocation[0], bossLocation[1], BOSS_ROOM_RADIUS);
+
+        while (possibleSpawnPoints.Count > 0)
         {
             int spawnPoint = rand.Next(0, possibleSpawnPoints.Count);
             int[] potentialPlayerSpawn = possibleSpawnPoints[spawnPoint];
             List<int[]> potentialSpawnNeighbors = GetTilesInRadius(potentialPlayerSpawn[0], potentialPlayerSpawn[1], 1);
-            if(potentialSpawnNeighbors.TrueForAll(neighbor => map[neighbor[0], neighbor[1]] == BASIC_TILE))
+            if(potentialSpawnNeighbors.TrueForAll(neighbor => map[neighbor[0], neighbor[1]] == BASIC_TILE) && !bossRoomTiles.Contains(potentialPlayerSpawn))
             {
                 playerSpawn = potentialPlayerSpawn;
                 spawnFound = true;
