@@ -85,7 +85,7 @@ MonoBehaviour:
   attackDamage: -1
   enemyDrop: {fileID: 5191327861972386730, guid: e0a90efad4c4f44ada935253972f046f, type: 3}
   bullet: {fileID: 5855864139884856352, guid: adefb8be846f16447b8c47c9e7e911df, type: 3}
-  projVelocity: 0
+  projVelocity: 5
   lifespan: 100
   anchor: {x: 0, y: 0, z: 0}
   goal: {fileID: 0}
